@@ -1,4 +1,5 @@
 package Dulceria;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -12,8 +13,7 @@ public class Sistema {
 		
 		Tienda tienda = new Tienda("Gomitas donde Jhoe","Abajo del puente");
 		
-		
-	
+		//System.out.println(Arrays.toString(tienda.getAlmacen_dulces()));
 		
 		
 		int option1 = 0;
@@ -22,11 +22,10 @@ public class Sistema {
 			option1 = sc.nextInt();
 			switch(option1) {
 			case 1:{
-				 boolean validacion = s.validacion_user(tienda);
-				 if(validacion==true) {
+				 if(s.validar_encargado(tienda)==true) {
 					 System.out.println("Eliga el opcion de encargado");
 				 }
-				 else if(validacion==false) {
+				 else{
 					 System.out.println("Usuario bloqueado");
 					 option1 = 3;
 				 }
@@ -52,10 +51,14 @@ public class Sistema {
 	}
 	
 	
-	public void menu1() {	
+	public void menu_encargado() {	
+		System.out.println("LAS OPCIONES DISPONIBLES EN EL MENU DE ENCARGADO, SON:}"
+				+ "\n1.");
+		
+		
 	}
 	
-	public void menu2() {
+	public void menu_cliente() {
 		System.out.println("LAS OPCIONES DISPONIBLES EN NUESTRO MENU, SON:"
 				+ "\n1.Gomitas por Unidad disponibles"
 				+ "\n2.Paquetes de Gomitas disponibles"
@@ -68,38 +71,7 @@ public class Sistema {
 		
 	}
 	
-	public boolean validacion_user(Tienda tienda) {
-	//cambio 1
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Buen dia querido encargado. Ingresar los datos pedidos, recuerde que solo cuenta con 3 intentos" );
-		boolean estado = false;
-		int contador = 0;
-		while(contador<3&&estado!=true) {
-			System.out.println("INTENTO "+(contador+1)+" Escriba su usuario");
-			String usuario = sc.next();
-			if(usuario.equals(tienda.getTrabajador().getUsuario_login())) {
-				System.out.println("Escriba su contraseña");
-				String contraseña = sc.next();
-				if(contraseña.equals(tienda.getTrabajador().getContraseña_login())) {
-					System.out.println("Ingresando");
-					estado = true;
-				}
-				else {
-					System.out.println("Contraseña incorrecta");
-					contador++;
-				}
-			}
-			else {
-				System.out.println("Usuario incorrecto");//jvhj
-				contador++;
-			}
-			
-		}
-		return estado;//devuelve
-	}
-	
 	public void crear_usuario(Tienda tienda) {
-		//can¿mbio 2
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Bienvenido a la dulceria " + tienda.getNombre() + "estamos ubicados en " + tienda.getDirreccion()
 		+ "\nGracias por preferirnos, por favor para iniciar su proceso de compra digite los siguiente datos");
@@ -112,10 +84,38 @@ public class Sistema {
 		System.out.println("Escriba el presupuesto con el que cuenta");
 		double presupuesto = sc.nextDouble();
 		
-		Cliente c1 = new Cliente(nombre,edad,id,presupuesto);	
-		tienda.setCliente(c1);
+		tienda.crear_cliente(nombre, edad, id, id);	
+		
 	}
 	
-	
+	public boolean validar_encargado(Tienda tienda) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Buen dia querido encargado. Ingresar los datos pedidos, recuerde que solo cuenta con 3 intentos" );
+		boolean estado = false;
+		boolean validacion = false;
+		int contador = 0;
+		while(contador<3&&validacion!=true) {
+			System.out.println("INTENTO "+(contador+1)+" Escriba su usuario");
+			String usuario = sc.next();
+			if(tienda.login_user(estado, usuario)==true) {
+				System.out.println("Escriba su contraseña");
+				String contraseña = sc.next();
+				if(tienda.login_contraseña(estado, contraseña)==true) {
+					System.out.println("Ingresando");
+					validacion = true;
+				}
+				else {
+					System.out.println("Contraseña incorrecta");
+					contador++;
+				}
+			}
+			else {
+				System.out.println("Usuario incorrecto");
+				contador++;
+			}
+			
+		}
+		return validacion;
+	}
 	
 }

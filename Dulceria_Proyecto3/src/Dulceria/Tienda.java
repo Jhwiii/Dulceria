@@ -180,9 +180,6 @@ public class Tienda {
 	}
 
 	
-	public String dulces() {
-		return "Los paquetes de Dulces son:" + Arrays.toString(almacen_paquetes) +"da";
-	}
 	@Override
 	public String toString() {
 		return "Tienda [nombre=" + nombre + ", direccion=" + direccion + "\nALMACEN DE BEBIDAS="
@@ -191,7 +188,31 @@ public class Tienda {
 				+ Arrays.toString(calificaciones) + "]";
 	}
 
+	
+	
+	public boolean login_user(boolean estado,String usuario) {
+		estado = false;
+		if(usuario.equals(trabajador.getUsuario_login())) {
+			estado = true;
+		}
+		return estado;
+	}
+	public boolean login_contraseña(boolean estado,String contraseña) {
+		estado = false;
+		if(contraseña.equals(trabajador.getContraseña_login())) {
+			estado = true;
+		}
+		return estado;
+	}
 
+	
+	public void crear_cliente(String nombre, int edad, int id, int presupuesto) {
+		cliente.setNombre(nombre);
+		cliente.setEdad(edad);
+		cliente.setIdentificación(id);
+		cliente.setPresupuesto(presupuesto);
+	
+	}
 }
 
 
