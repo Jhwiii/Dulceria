@@ -62,7 +62,8 @@ public class Sistema {
 				+ "\n3.Bebidas disponibles"
 				+ "\n4.Realizar compra"
 				+ "\n5.Ver historial de compras"
-				+ "\n6.Imprimir factura de compra");
+				+ "\n6.Imprimir factura de compra"
+				+ "\n7.Salir");
 		
 		
 	}
