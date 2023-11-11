@@ -11,7 +11,7 @@ public class Sistema {
 		Scanner sc = new Scanner(System.in);
 		Sistema s = new Sistema();
 		
-		Tienda tienda = new Tienda("Gomitas donde Jhoe","Abajo del puente");
+		Tienda tienda = new Tienda("Ciocolatto ","Cra 4 # 8-71", "Ciocolatto@gmail.com", 320456788);
 		
 		//System.out.println(Arrays.toString(tienda.getAlmacen_dulces()));
 		
@@ -35,7 +35,7 @@ public class Sistema {
 				s.crear_usuario(tienda);
 				System.out.println("El cliente ha sido creado con los siguientes datos:\n" + tienda.getCliente().toString());
 				int option2 = 0;
-				while(option2!=7) {
+				while(option2!=8) {
 					s.menu_cliente();
 					option2 = sc.nextInt();
 					switch(option2) {
@@ -55,7 +55,17 @@ public class Sistema {
 						s.menu_compras(tienda,s);
 						break;
 					}
+					case 5: {
+						
 					}
+					case 6: {
+						
+					}
+					case 7:{
+						s.ayuda();
+						break; 
+					 }
+				  }
 				}
 				
 				break;
@@ -83,7 +93,7 @@ public class Sistema {
 	
 	
 	public void menu_encargado() {	
-		System.out.println("LAS OPCIONES DISPONIBLES EN EL MENU DE ENCARGADO, SON:}"
+		System.out.println("LAS OPCIONES DISPONIBLES EN EL MENU DE ENCARGADO, SON: "
 				+ "\n1.");
 		
 		
@@ -131,7 +141,8 @@ public class Sistema {
 				+ "\n4.Realizar compra"
 				+ "\n5.Ver historial de compras"
 				+ "\n6.Imprimir factura de compra"
-				+ "\n7.Salir");
+				+ "\n7.Ayuda"
+				+ "\n8.Salir");
 	}
 	
 	public void crear_usuario(Tienda tienda) {
@@ -179,6 +190,69 @@ public class Sistema {
 			
 		}
 		return validacion;
+	}
+	
+	public void ayuda() {
+		Tienda tienda = new Tienda("Ciocolatto ","Cra 4 # 8-71", "Ciocolatto@gmail.com", 320456788); 
+		Scanner sc = new Scanner(System.in); 
+		int opci= 0; 
+	
+		while (opci != 3) {
+			
+			System.out.println("\nHola! te has comunicado con el asistente virtual de Ciocolatto");
+			System.out.println("\nEn que puedo ayudarte hoy?");
+			System.out.println("\n1.Preguntas frecuentes");
+			System.out.println("\n2.Comunicarte con un asesor");
+			System.out.println("\n3.Salir");
+			opci = sc.nextInt(); 
+			
+			switch (opci) {
+			
+			case 1: {
+				int opcion = 0; 
+				 while (opcion != 5) {
+					
+	            System.out.println("\n1.Como realizar la compra?");
+    			System.out.println("\n2.Donde recoger tu pedido?");
+    			System.out.println("\n3.Cuanto demora la entrega de tu pedido?");
+    			System.out.println("\n4.Donde realizar reclamos?");
+    			System.out.println("\n5.Salir");
+    			
+    			 System.out.println("\nDigita el numero de la pregunta a la que desees acceder");
+				 opcion = sc.nextInt();
+	    			switch (opcion) {
+	    			
+	    			case 1: {
+	    				System.out.println("Para realizar la comprar dirigete al menu anterior y completa los pasos indicados para obtener tu producto deseado."); 
+	    				break;}
+	    			case 2: {
+	    				System.out.println("Si deseas recoger tu pedido en tienda, visitanos en: Cra 4 # 8-71. ");
+	    				break; }
+	    			case 3: {
+	    				System.out.println("Si tu pedido es dentro de la ciudad, alrededor de 3 horas, si es envio nacional, los tiempos dependen de las transportadoras.");
+	    				break;} 
+	    			case 4: {
+	    				System.out.println("Puedes dirigirte al menu anterior y comunicarte con un asesor. ");
+	    				break;} 
+	    			default: {
+	    				System.out.println("opcion no valida, ingrese un numero correctamente");
+	    			break; }
+	    			}
+	    		}
+		 break;
+			}
+			case 2: {
+				System.out.println("Nuestras lineas de atencion son: ");
+				System.out.println("\nTelefono: " + tienda.getTelefono());
+				System.out.println("\nCorreo: " + tienda.getCorreo());
+				break; 
+			   }
+			default: {
+				System.out.println("\nIngrese la opcion correcta ");
+			}
+		  }
+		}
+		
 	}
 	
 }

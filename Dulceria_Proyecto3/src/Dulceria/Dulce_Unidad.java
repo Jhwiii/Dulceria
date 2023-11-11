@@ -6,8 +6,8 @@ public class Dulce_Unidad {
 	private String nombre;
 	private String tipo; //Los dulces pueden ser gomitas, chocolates, bombones o caramelos
 	private String descripcion;
-	private double precio_compra;
-	private double precio_venta;
+	private int precio_compra;
+	private int precio_venta;
 	private int cantidad_dulces;
 	
 	
@@ -35,18 +35,18 @@ public class Dulce_Unidad {
 	}
 
 	
-	public double getPrecio_compra() {
+	public int getPrecio_compra() {
 		return precio_compra;
 	}
-	public void setPrecio_compra(double precio_compra) {
+	public void setPrecio_compra(int precio_compra) {
 		this.precio_compra = precio_compra;
 	}
 
 	
-	public double getPrecio_venta() {
+	public int getPrecio_venta() {
 		return precio_venta;
 	}
-	public void setPrecio_venta(double precio_venta) {
+	public void setPrecio_venta(int precio_venta) {
 		this.precio_venta = precio_venta;
 	}
 	
@@ -68,7 +68,7 @@ public class Dulce_Unidad {
 		cantidad_dulces = 0;
 	}
 	
-	public Dulce_Unidad(String nombre, String tipo, String descripcion, double precio_compra, double precio_venta, int cantidad_dulces) {
+	public Dulce_Unidad(String nombre, String tipo, String descripcion, int precio_compra, int precio_venta, int cantidad_dulces) {
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.descripcion = descripcion;
@@ -79,7 +79,7 @@ public class Dulce_Unidad {
 	
 	@Override
 	public String toString() {
-		return "\n[nombre= " + nombre + ", tipo= " + tipo + ", descripcion= " + descripcion + ", dulces disponibles= " + cantidad_dulces + "]";
+		return "\n[Nombre= " + nombre + ", Tipo= " + tipo + ", Descripcion= " + descripcion + ", Precio=" + precio_venta+ ", Dulces disponibles= " + cantidad_dulces + "]";
 	}
 	
 	

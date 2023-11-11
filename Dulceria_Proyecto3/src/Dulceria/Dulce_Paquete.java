@@ -7,8 +7,8 @@ public class Dulce_Paquete {
 	private String descripcion; //Breve descripcion de el producto, se indica si tiene restricciones o no
 	private int cantidad; //Cantidad de dulces que vienen en cada paquete de dulces
 	private int cantidad_paquetes;
-	private double precio_compra;
-	private double precio_venta;
+	private int precio_compra;
+	private int precio_venta;
 	
 	
 	public String getNombre() {
@@ -46,15 +46,15 @@ public class Dulce_Paquete {
 	public double getPrecio_compra() {
 		return precio_compra;
 	}
-	public void setPrecio_compra(double precio_compra) {
+	public void setPrecio_compra(int precio_compra) {
 		this.precio_compra = precio_compra;
 	}
 
 	
-	public double getPrecio_venta() {
+	public int getPrecio_venta() {
 		return precio_venta;
 	}
-	public void setPrecio_venta(double precio_venta) {
+	public void setPrecio_venta(int precio_venta) {
 		this.precio_venta = precio_venta;
 	}
 	
@@ -76,7 +76,7 @@ public class Dulce_Paquete {
 		cantidad_paquetes = 0;
 	}
 	
-	public Dulce_Paquete(String nombre, String tipo, String descripcion, int cantidad, double precio_compra, double precio_venta,int cantidad_paquetes) {
+	public Dulce_Paquete(String nombre, String tipo, String descripcion, int cantidad, int precio_compra, int precio_venta,int cantidad_paquetes) {
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.descripcion = descripcion;
@@ -88,8 +88,8 @@ public class Dulce_Paquete {
 	
 	@Override
 	public String toString() {
-		return "\n[nombre= " + nombre + ", tipo= " + tipo + ", descripcion= " + descripcion + ", cantidad por paquete= "
-				+ cantidad + " ,paquetes disponibles= " + cantidad_paquetes + "]";
+		return "\n[Nombre= " + nombre + ", Tipo= " + tipo + ", Descripcion= " + descripcion + ", Cantidad por paquete= "
+				+ cantidad + ", Precio= " + precio_venta +" ,Paquetes disponibles= " + cantidad_paquetes + "]";
 	}
 	
 	
