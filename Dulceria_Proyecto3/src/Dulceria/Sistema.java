@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Sistema {
 
 	public static void main(String[] args) {
-		
+		   
 
 		Scanner sc = new Scanner(System.in);
 		Sistema s = new Sistema();
@@ -34,7 +34,30 @@ public class Sistema {
 			case 2:{
 				s.crear_usuario(tienda);
 				System.out.println("El cliente ha sido creado con los siguientes datos:\n" + tienda.getCliente().toString());
-
+				int option2 = 0;
+				while(option2!=7) {
+					s.menu_cliente();
+					option2 = sc.nextInt();
+					switch(option2) {
+					case 1:{
+						System.out.println("Los dulces disponibles son:" + Arrays.toString(tienda.getAlmacen_dulces()));
+						break;
+					}
+					case 2:{
+						System.out.println("Los paquetes de dulces disponibles son:\n" + Arrays.toString(tienda.getAlmacen_paquetes()));
+						break;
+					}
+					case 3:{
+						System.out.println("Las bebidas disponibles son:\n" + Arrays.toString(tienda.getAlmacen_bebidas()));
+						break;
+					}
+					case 4:{
+						s.menu_compras(tienda,s);
+						break;
+					}
+					}
+				}
+				
 				break;
 			}
 			case 3:{
@@ -50,6 +73,14 @@ public class Sistema {
 		
 	}
 	
+	public String ordenar_letras(String palabra) {
+		//Este metodo se usa ya que si el usuario no digita en la palabra deseada, la primera en mayuscula, no se podra identificar si 
+		//el objeto que busca esta disponible
+		String resultado = palabra.toUpperCase().charAt(0) + palabra.substring(1, palabra.length()).toLowerCase();
+		return resultado;
+	}
+	
+	
 	
 	public void menu_encargado() {	
 		System.out.println("LAS OPCIONES DISPONIBLES EN EL MENU DE ENCARGADO, SON:}"
@@ -58,6 +89,40 @@ public class Sistema {
 		
 	}
 	
+	public void menu_compras(Tienda tienda, Sistema s) {
+		Scanner sc = new Scanner(System.in);
+		int option3 = 0;
+		while(option3 !=5) {
+			System.out.println("LOS OBJETOS DISPONIBLES PARA LA VENTA SON, ELIGA UNO:"
+					+ "\n1.Dulces Por Unidad \n2.Dulces Por Paquete \n3.Bebidas \n4.Imprimir factura \n5.Salir de menu de compras");
+			option3 = sc.nextInt();
+			switch(option3) {
+			case 1:{
+				System.out.println("Los dulces disponibles son:" + Arrays.toString(tienda.getAlmacen_dulces()));
+				System.out.println("ESCRIBA EL NOMBRE DEL DULCE QUE DESEA COMPRAR");
+				String dulce = sc.next();
+				dulce = s.ordenar_letras(dulce);
+				boolean disponibilidad = false;
+				for(int a = 0;a<tienda.getAlmacen_dulces().length;a++) {
+					if(dulce.equals(tienda.getAlmacen_dulces()[a].getNombre())) {
+						disponibilidad = true;
+						System.out.println("Cuantas unidades del dulce desea comprar");
+						int cantidad = sc.nextInt();
+						
+					}
+				}
+				if(disponibilidad == false) {
+					System.out.println("El dulce " + dulce + " no se encuentra en el inventario");
+				}
+				break;
+			}
+			}
+		}
+	}
+	
+	public void compra() {
+		
+	}
 	public void menu_cliente() {
 		System.out.println("LAS OPCIONES DISPONIBLES EN NUESTRO MENU, SON:"
 				+ "\n1.Gomitas por Unidad disponibles"
@@ -67,8 +132,6 @@ public class Sistema {
 				+ "\n5.Ver historial de compras"
 				+ "\n6.Imprimir factura de compra"
 				+ "\n7.Salir");
-		
-		
 	}
 	
 	public void crear_usuario(Tienda tienda) {
