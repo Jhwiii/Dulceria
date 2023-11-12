@@ -34,7 +34,7 @@ public class Calificacion {
 	}
 	@Override
 	public String toString() {
-		return "\n[comentario=" + comentario + ", numero=" + numero + "]";
+		return "\n[comentario=" + comentario + ", calificacion=" + numero + "]";
 	}
 	
 	

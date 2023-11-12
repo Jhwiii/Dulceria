@@ -5,7 +5,7 @@ public class Cliente {
 	private String nombre;
 	private int edad;
 	private int identificacion;
-	private double presupuesto;
+	private int presupuesto;
 	
 	
 	public String getNombre() {
@@ -32,10 +32,10 @@ public class Cliente {
 	}
 	
 	
-	public double getPresupuesto() {
+	public int getPresupuesto() {
 		return presupuesto;
 	}
-	public void setPresupuesto(double presupuesto) {
+	public void setPresupuesto(int presupuesto) {
 		this.presupuesto = presupuesto;
 	}
 	
@@ -48,7 +48,7 @@ public class Cliente {
 	}
 	
 	
-	public Cliente(String nombre, int edad, int identificación, double presupuesto) {
+	public Cliente(String nombre, int edad, int identificación, int presupuesto) {
 		super();
 		this.nombre = nombre;
 		this.edad = edad;

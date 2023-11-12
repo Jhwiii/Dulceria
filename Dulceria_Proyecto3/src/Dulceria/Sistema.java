@@ -16,6 +16,8 @@ public class Sistema {
 		//System.out.println(Arrays.toString(tienda.getAlmacen_dulces()));
 		
 		
+		
+		
 		int option1 = 0;
 		while(option1!=3) {
 			System.out.println("TIPO DE ACCESO---1.Encargado--2.Cliente--3.Salir de la Dulceria");
@@ -56,15 +58,28 @@ public class Sistema {
 						break;
 					}
 					case 5: {
-						
+						break;
 					}
 					case 6: {
-						
+						break;
 					}
 					case 7:{
-						s.ayuda();
+						System.out.println(tienda.ver_calificaciones());
+						break;
+					}
+					case 8:{
+						s.ayuda(tienda);
 						break; 
 					 }
+					case 9:{
+						System.out.println("Gracias por visitar nuestra dulceria, antes de abandonarla ayudanos con una encuesta de satisfaccion para mejorar la experiencia");
+						s.encuesta(tienda);
+						break;
+					}
+					default:{
+						System.out.println("Eliga una de las opciones disponibles");
+						break;
+					}
 				  }
 				}
 				
@@ -83,13 +98,26 @@ public class Sistema {
 		
 	}
 	
+	public void encuesta(Tienda tienda) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Escriba un comentario su experiencia en la dulceria");
+		String comentario = sc.nextLine();
+		int calificacion = 0;
+		do {
+		System.out.println("Entre 0-5, califique su experiencia en la dulceria");
+		calificacion = sc.nextInt();
+		}while(calificacion<0||calificacion>5);
+		tienda.nueva_calificacion(comentario, calificacion);
+		
+	}
+	
+	
 	public String ordenar_letras(String palabra) {
 		//Este metodo se usa ya que si el usuario no digita en la palabra deseada, la primera en mayuscula, no se podra identificar si 
 		//el objeto que busca esta disponible
 		String resultado = palabra.toUpperCase().charAt(0) + palabra.substring(1, palabra.length()).toLowerCase();
 		return resultado;
 	}
-	
 	
 	
 	public void menu_encargado() {	
@@ -112,23 +140,31 @@ public class Sistema {
 				System.out.println("ESCRIBA EL NOMBRE DEL DULCE QUE DESEA COMPRAR");
 				String dulce = sc.next();
 				dulce = s.ordenar_letras(dulce);
-				boolean disponibilidad = false;
-				for(int a = 0;a<tienda.getAlmacen_dulces().length;a++) {
-					if(dulce.equals(tienda.getAlmacen_dulces()[a].getNombre())) {
-						disponibilidad = true;
-						System.out.println("Cuantas unidades del dulce desea comprar");
-						int cantidad = sc.nextInt();
-						
+				if(tienda.disponibilidad_dulces(dulce) == true) {
+					System.out.println("Escriba la cantidad de unidades de "+ dulce +" que desea comprar");
+					int cantidad = sc.nextInt();
+					if(tienda.cantidad_disponible_dulces(cantidad, dulce)==0) {
+						System.out.println("No se cuenta en el inventario con la cantidad de dulces necesitados, por lo que no se puede completar la venta");
 					}
+					else if(tienda.cantidad_disponible_dulces(cantidad, dulce)==1) {
+						System.out.println("El presupuesto no es suficiente para la compra");
+					}
+					else {
+						System.out.println("Compra realizada");
+					}
+						
+					
 				}
-				if(disponibilidad == false) {
+				else {
 					System.out.println("El dulce " + dulce + " no se encuentra en el inventario");
 				}
 				break;
 			}
+				
 			}
 		}
 	}
+	
 	
 	public void compra() {
 		
@@ -141,8 +177,9 @@ public class Sistema {
 				+ "\n4.Realizar compra"
 				+ "\n5.Ver historial de compras"
 				+ "\n6.Imprimir factura de compra"
-				+ "\n7.Ayuda"
-				+ "\n8.Salir");
+				+ "\n7.Ver reseñas"
+				+ "\n8.Ayuda"
+				+ "\n9.Salir");
 	}
 	
 	public void crear_usuario(Tienda tienda) {
@@ -156,9 +193,9 @@ public class Sistema {
 		System.out.println("EScriba su numero de identificacion");
 		int id = sc.nextInt();
 		System.out.println("Escriba el presupuesto con el que cuenta");
-		double presupuesto = sc.nextDouble();
+		int presupuesto = sc.nextInt();
 		
-		tienda.crear_cliente(nombre, edad, id, id);	
+		tienda.crear_cliente(nombre, edad, id, presupuesto);	
 		
 	}
 	
@@ -192,8 +229,7 @@ public class Sistema {
 		return validacion;
 	}
 	
-	public void ayuda() {
-		Tienda tienda = new Tienda("Ciocolatto ","Cra 4 # 8-71", "Ciocolatto@gmail.com", 320456788); 
+	public void ayuda(Tienda tienda) {
 		Scanner sc = new Scanner(System.in); 
 		int opci= 0; 
 	

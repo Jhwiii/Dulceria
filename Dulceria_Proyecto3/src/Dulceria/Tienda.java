@@ -153,6 +153,7 @@ public class Tienda {
 		}
 		calificaciones();
 		
+		
 		trabajador = new Encargado("Juan Perez",23,12341.9,"elperritojuan","1234masmelo");
 		cliente = new Cliente();
 	}
@@ -201,7 +202,6 @@ public class Tienda {
 		calificaciones[4] = new Calificacion();
 	}
 
-	
 	@Override
 	public String toString() {
 		return "Tienda [nombre=" + nombre + ", direccion=" + direccion + "\nALMACEN DE BEBIDAS="
@@ -210,8 +210,6 @@ public class Tienda {
 				+ Arrays.toString(calificaciones) + "]";
 	}
 
-	
-	
 	public boolean login_user(boolean estado,String usuario) {
 		estado = false;
 		if(usuario.equals(trabajador.getUsuario_login())) {
@@ -226,7 +224,6 @@ public class Tienda {
 		}
 		return estado;
 	}
-
 	
 	public void crear_cliente(String nombre, int edad, int id, int presupuesto) {
 		cliente.setNombre(nombre);
@@ -235,6 +232,50 @@ public class Tienda {
 		cliente.setPresupuesto(presupuesto);
 	
 	}
+	
+	public void nueva_calificacion(String comentario, int calificacion) {
+		getCalificaciones()[4].setComentario(comentario);
+		getCalificaciones()[4].setNumero(calificacion);
+	}
+	
+	public String ver_calificaciones() {
+		return Arrays.toString(calificaciones);
+	}
+	
+	public boolean disponibilidad_dulces(String dulce) {
+		boolean disponibilidad = false;
+		for(int a = 0;a<almacen_dulces.length;a++) {
+			if(dulce.equals(almacen_dulces[a].getNombre())) {
+				disponibilidad = true;
+			}
+		}
+		return disponibilidad;
+	}
+	
+	public int cantidad_disponible_dulces(int cantidad, String dulce) {
+		int disponibilidad_cantidad = 0;//si retorna el valor de 0, la cantidad de dulces solicitados es mayor a la de dulces disponibles
+		
+		for(int a = 0;a<almacen_dulces.length;a++) {
+			if(dulce.equals(almacen_dulces[a].getNombre())) {
+				int dulces_disponibles = getAlmacen_dulces()[a].getCantidad_dulces();
+				if(cantidad<dulces_disponibles) {
+					disponibilidad_cantidad = 1;//si retorna 1 el presupuesto del cliente no es sificiente para el pago de los dulces solicitados
+					int valor_compra = cantidad*getAlmacen_dulces()[a].getPrecio_venta();
+					if(valor_compra<cliente.getPresupuesto()) {
+						//int nueva_cantidad_dulces = getAlmacen_dulces()[a].getCantidad_dulces()-cantidad;
+						getAlmacen_dulces()[a].setCantidad_dulces(dulces_disponibles-cantidad);
+						//int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
+						getCliente().setPresupuesto((getCliente().getPresupuesto())-valor_compra);
+						disponibilidad_cantidad = 2;//si retorna 2 la compra fue he hecha con exito
+					}
+				}
+			}
+		}
+		return disponibilidad_cantidad;
+	}
+	
+	
+	
 }
 
 
