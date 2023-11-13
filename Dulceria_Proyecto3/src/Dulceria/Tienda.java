@@ -241,7 +241,8 @@ public class Tienda {
 	public String ver_calificaciones() {
 		return Arrays.toString(calificaciones);
 	}
-	
+	//metodo para saber si el objeto digitado por el cliente esta disponible retornara un valor boolean si es false el objeto no esta disponible 
+	//si retorna true el objeto esta disponible
 	public boolean disponibilidad_dulces(String dulce) {
 		boolean disponibilidad = false;
 		for(int a = 0;a<almacen_dulces.length;a++) {
@@ -252,20 +253,22 @@ public class Tienda {
 		return disponibilidad;
 	}
 	
+	//metodo donde se inicia como tal la compra, se analiza si la cantidad de dulces que necesita el cliente esta disponible en el almacen
+	//tambien se mira si el valor de los dulces es se puede pagar con el presupuesto del cliente, se descuentan los dulces y el presupuesto
+	//retorna un numero entre 0 y 2, ya que son las tres posibles situaciones que pueden ocurrir
 	public int cantidad_disponible_dulces(int cantidad, String dulce) {
 		int disponibilidad_cantidad = 0;//si retorna el valor de 0, la cantidad de dulces solicitados es mayor a la de dulces disponibles
-		
 		for(int a = 0;a<almacen_dulces.length;a++) {
 			if(dulce.equals(almacen_dulces[a].getNombre())) {
-				int dulces_disponibles = getAlmacen_dulces()[a].getCantidad_dulces();
-				if(cantidad<dulces_disponibles) {
+				;
+				if(cantidad<getAlmacen_dulces()[a].getCantidad_dulces()) {
 					disponibilidad_cantidad = 1;//si retorna 1 el presupuesto del cliente no es sificiente para el pago de los dulces solicitados
 					int valor_compra = cantidad*getAlmacen_dulces()[a].getPrecio_venta();
 					if(valor_compra<cliente.getPresupuesto()) {
-						//int nueva_cantidad_dulces = getAlmacen_dulces()[a].getCantidad_dulces()-cantidad;
-						getAlmacen_dulces()[a].setCantidad_dulces(dulces_disponibles-cantidad);
-						//int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
-						getCliente().setPresupuesto((getCliente().getPresupuesto())-valor_compra);
+						int nueva_cantidad_dulces = getAlmacen_dulces()[a].getCantidad_dulces()-cantidad;
+						getAlmacen_dulces()[a].setCantidad_dulces(nueva_cantidad_dulces);
+						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
+						getCliente().setPresupuesto(nuevo_presupuesto);
 						disponibilidad_cantidad = 2;//si retorna 2 la compra fue he hecha con exito
 					}
 				}

@@ -143,17 +143,16 @@ public class Sistema {
 				if(tienda.disponibilidad_dulces(dulce) == true) {
 					System.out.println("Escriba la cantidad de unidades de "+ dulce +" que desea comprar");
 					int cantidad = sc.nextInt();
-					if(tienda.cantidad_disponible_dulces(cantidad, dulce)==0) {
+					int estado_compra = tienda.cantidad_disponible_dulces(cantidad, dulce);
+					if(estado_compra==0) {
 						System.out.println("No se cuenta en el inventario con la cantidad de dulces necesitados, por lo que no se puede completar la venta");
 					}
-					else if(tienda.cantidad_disponible_dulces(cantidad, dulce)==1) {
+					else if(estado_compra==1) {
 						System.out.println("El presupuesto no es suficiente para la compra");
 					}
 					else {
 						System.out.println("Compra realizada");
 					}
-						
-					
 				}
 				else {
 					System.out.println("El dulce " + dulce + " no se encuentra en el inventario");
