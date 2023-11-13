@@ -183,7 +183,7 @@ public class Tienda {
 		almacen_dulces[6] = new Dulce_Unidad("Barrilete","Caramelo","Caramelo masticable de colores",600,1000,(int)(Math.random()*145));
 		almacen_dulces[7] = new Dulce_Unidad("Cintas","Gomita","Gomitas arcoiris azucaradas",600,1000,(int)(Math.random()*50));
 		almacen_dulces[8] = new Dulce_Unidad("Burbuja jet","Chocolate","Esfera de Chocolate con relleno",600,1000,(int)(Math.random()*324));
-		almacen_dulces[9] = new Dulce_Unidad("Goma feliz","Gomita","Goma artesanal hecha con alcohol",1000,2500,(int)(Math.random()*75));	
+		almacen_dulces[9] = new Dulce_Unidad("Feligoma","Gomita","Goma artesanal hecha con alcohol",1000,2500,(int)(Math.random()*75));	
 	}
 	
 	public void crear_paquete() {
@@ -241,6 +241,11 @@ public class Tienda {
 	public String ver_calificaciones() {
 		return Arrays.toString(calificaciones);
 	}
+	
+	
+	
+	
+	
 	//metodo para saber si el objeto digitado por el cliente esta disponible retornara un valor boolean si es false el objeto no esta disponible 
 	//si retorna true el objeto esta disponible
 	public boolean disponibilidad_dulces(String dulce) {
@@ -256,26 +261,100 @@ public class Tienda {
 	//metodo donde se inicia como tal la compra, se analiza si la cantidad de dulces que necesita el cliente esta disponible en el almacen
 	//tambien se mira si el valor de los dulces es se puede pagar con el presupuesto del cliente, se descuentan los dulces y el presupuesto
 	//retorna un numero entre 0 y 2, ya que son las tres posibles situaciones que pueden ocurrir
-	public int cantidad_disponible_dulces(int cantidad, String dulce) {
-		int disponibilidad_cantidad = 0;//si retorna el valor de 0, la cantidad de dulces solicitados es mayor a la de dulces disponibles
+	public int proceso_compra_dulces(int cantidad, String dulce) {
+		int estado = 0;//si retorna el valor de 0, la cantidad de dulces solicitados es mayor a la de dulces disponibles
 		for(int a = 0;a<almacen_dulces.length;a++) {
 			if(dulce.equals(almacen_dulces[a].getNombre())) {
-				;
-				if(cantidad<getAlmacen_dulces()[a].getCantidad_dulces()) {
-					disponibilidad_cantidad = 1;//si retorna 1 el presupuesto del cliente no es sificiente para el pago de los dulces solicitados
+				if(cantidad<=getAlmacen_dulces()[a].getCantidad_dulces()) {
+					estado = 1;//si retorna 1 el presupuesto del cliente no es sificiente para el pago de los dulces solicitados
 					int valor_compra = cantidad*getAlmacen_dulces()[a].getPrecio_venta();
 					if(valor_compra<cliente.getPresupuesto()) {
 						int nueva_cantidad_dulces = getAlmacen_dulces()[a].getCantidad_dulces()-cantidad;
 						getAlmacen_dulces()[a].setCantidad_dulces(nueva_cantidad_dulces);
 						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
-						disponibilidad_cantidad = 2;//si retorna 2 la compra fue he hecha con exito
+						estado = 2;//si retorna 2 la compra fue he hecha con exito
 					}
 				}
 			}
 		}
-		return disponibilidad_cantidad;
+		return estado;
 	}
+
+	
+	
+	public boolean disponibilidad_paquetes(String paquete) {
+		boolean disponibilidad = false;
+		for(int a = 0;a<almacen_paquetes.length;a++) {
+			if(paquete.equals(almacen_paquetes[a].getNombre())) {
+				disponibilidad = true;
+			}
+		}
+		return disponibilidad;
+	}
+	
+	public int proceso_compra_paquetes(String paquete,int cantidad) {
+		int estado = 0;
+		for(int a = 0;a<almacen_paquetes.length;a++) {
+			if(paquete.equals(almacen_paquetes[a].getNombre())) {
+				if(cantidad<=getAlmacen_paquetes()[a].getCantidad_paquetes()) {
+					estado = 1;
+					int valor_compra = cantidad*getAlmacen_paquetes()[a].getPrecio_venta();
+					if(valor_compra<cliente.getPresupuesto()) {
+						int nueva_cantidad_paquetes = getAlmacen_paquetes()[a].getCantidad_paquetes()-cantidad;
+						getAlmacen_paquetes()[a].setCantidad_paquetes(nueva_cantidad_paquetes);
+						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
+						getCliente().setPresupuesto(nuevo_presupuesto);
+						estado = 2;
+					}
+				}
+			}
+		}
+		return estado;
+	}
+	
+	
+	public boolean disponibilidad_bebidas(String bebida) {
+		boolean disponibilidad = false;
+		for(int a = 0;a<almacen_bebidas.length;a++) {
+			if(bebida.equals(almacen_bebidas[a].getNombre())){
+				disponibilidad = true;
+			}
+		}
+		return disponibilidad;
+	}
+	
+	
+	public int proceso_compra_bebidas(String bebida,int cantidad) {
+		int estado = 0;
+		for(int a = 0;a<almacen_bebidas.length;a++) {
+			if(bebida.equals(almacen_bebidas[a].getNombre())) {
+				if(cantidad<=getAlmacen_bebidas()[a].getCantidad_bebidas()) {
+					estado = 1;
+					int valor_compra = cantidad*getAlmacen_bebidas()[a].getPrecio_venta();
+					if(valor_compra<cliente.getPresupuesto()) {
+						int nueva_cantidad_paquetes = getAlmacen_bebidas()[a].getCantidad_bebidas()-cantidad;
+						getAlmacen_bebidas()[a].setCantidad_bebidas(nueva_cantidad_paquetes);
+						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
+						getCliente().setPresupuesto(nuevo_presupuesto);
+						estado = 2;
+					}
+				}
+			}
+		}
+		return estado;
+	}
+	
+	public boolean mayor_edad() {
+		boolean edad = false;
+		if(cliente.getEdad()>=18) {
+			edad = true;
+		}
+		return edad;
+	}
+	//MIRE SI LE APARECE BIEN
+	
+
 }
 
 
