@@ -140,12 +140,31 @@ public class Sistema {
 				System.out.println("ESCRIBA EL NOMBRE DEL DULCE QUE DESEA COMPRAR");
 				String dulce = sc.next();
 				dulce = s.ordenar_letras(dulce);
-				if(tienda.disponibilidad_dulces(dulce) == true) {
-					System.out.println("Escriba la cantidad de unidades de "+ dulce +" que desea comprar");
+				if(dulce.equals("Feligoma")) {
+					if(tienda.mayor_edad()==true) {
+						System.out.println("Si cuenta con la edad para comprar esta gomita");
+						s.compra_de_dulces(tienda, dulce);//se crea la venta de los dulces por unidad como un metodo para cuando se necesite hacer la verificacion de mayoria de edad de la gomita alcoholica
+					}
+					else {
+						System.out.println("No tienes la edad para venderte este dulce, no eres mayor de edad");
+					}
+				}
+				else {
+					s.compra_de_dulces(tienda, dulce);
+				}
+				break;
+			}
+			case 2 :{
+				System.out.println("Los paquetes de dulces disponibles son: \n"+Arrays.toString(tienda.getAlmacen_paquetes()));
+				System.out.println("ESCRIBA EL NOMBRE DEL PAQUETE DE DULCES QUE DESEA COMPRAR");
+				String paquete = sc.next();
+				paquete = s.ordenar_letras(paquete);
+				if(tienda.disponibilidad_paquetes(paquete)==true) {
+					System.out.println("Escriba la cantidad de paquetes de " + paquete + " que desea comprar");
 					int cantidad = sc.nextInt();
-					int estado_compra = tienda.cantidad_disponible_dulces(cantidad, dulce);
-					if(estado_compra==0) {
-						System.out.println("No se cuenta en el inventario con la cantidad de dulces necesitados, por lo que no se puede completar la venta");
+					int estado_compra = tienda.proceso_compra_paquetes(paquete, cantidad);
+					if(estado_compra == 0){
+						System.out.println("No se cuenta en el inventario con la cantidad de paquetes necesitados, por lo que no se puede completar la venta");
 					}
 					else if(estado_compra==1) {
 						System.out.println("El presupuesto no es suficiente para la compra");
@@ -155,15 +174,60 @@ public class Sistema {
 					}
 				}
 				else {
-					System.out.println("El dulce " + dulce + " no se encuentra en el inventario");
+					System.out.println("El paquete " + paquete + " no esta disponible");
 				}
 				break;
 			}
-				
+			case 3:{
+				System.out.println("Las bebidas disponibles son:\n " + Arrays.toString(tienda.getAlmacen_bebidas()));
+				System.out.println("ESCRIBA EL NOMBRE DE LA BEBIDA QUE DESEA COMPRAR");
+				String bebida = sc.next();
+				bebida = s.ordenar_letras(bebida);
+				if(tienda.disponibilidad_bebidas(bebida)==true) {
+					System.out.println("Escriba la cantidad de bebidas de " + bebida+ " que desea comprar");
+					int cantidad = sc.nextInt();
+					int estado_compra = tienda.proceso_compra_bebidas(bebida, cantidad);
+					if(estado_compra == 0) {
+						System.out.println("No se cuenta en el inventario con la cantidad de paquetes necesitados, por lo que no se puede completar la venta");
+					}
+					else if(estado_compra==1){
+						System.out.println("El presupuesto no es suficiente para la compra");
+					}
+					else {
+						System.out.println("Compra realizada");
+					}
+				}
+				else {
+					System.out.println("El paquete " + bebida + " no esta disponible");
+				}
+				break;	
+			}
 			}
 		}
 	}
 	
+	
+	public void compra_de_dulces(Tienda tienda, String dulce) {
+		Scanner sc = new Scanner(System.in);
+		if(tienda.disponibilidad_dulces(dulce) == true) {
+			System.out.println("Escriba la cantidad de unidades de "+ dulce +" que desea comprar");
+			int cantidad = sc.nextInt();
+			int estado_compra = tienda.proceso_compra_dulces(cantidad, dulce);
+			if(estado_compra==0) {
+				System.out.println("No se cuenta en el inventario con la cantidad de dulces necesitados, por lo que no se puede completar la venta");
+			}
+			else if(estado_compra==1) {
+				System.out.println("El presupuesto no es suficiente para la compra");
+			}
+			else {
+				System.out.println("Compra realizada");
+			}
+		}
+		else {
+			System.out.println("El dulce " + dulce + " no se encuentra en el inventario");
+		}
+
+	}
 	
 	public void compra() {
 		
