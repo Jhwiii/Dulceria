@@ -276,9 +276,6 @@ public class Tienda {
 		}
 		return disponibilidad_cantidad;
 	}
-	
-	
-	
 }
 
 
