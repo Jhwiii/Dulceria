@@ -10,12 +10,11 @@ public class Sistema {
 
 		Scanner sc = new Scanner(System.in);
 		Sistema s = new Sistema();
+		Finanza f = new Finanza(); 
 		
 		Tienda tienda = new Tienda("Ciocolatto ","Cra 4 # 8-71", "Ciocolatto@gmail.com", 320456788);
 		
 		//System.out.println(Arrays.toString(tienda.getAlmacen_dulces()));
-		
-		
 		
 		
 		int option1 = 0;
@@ -25,7 +24,10 @@ public class Sistema {
 			switch(option1) {
 			case 1:{
 				 if(s.validar_encargado(tienda)==true) {
-					 System.out.println("Eliga el opcion de encargado");
+					 System.out.println("Eliga la opcion de encargado");
+				 
+				 s.gananciastienda(f);
+				 
 				 }
 				 else{
 					 System.out.println("Usuario bloqueado");
@@ -353,5 +355,47 @@ public class Sistema {
 		}
 		
 	}
+	
+	public void gananciastienda( Finanza f) {
+		Scanner sc = new Scanner(System.in); 
+		
+		int opcion = 0; 
+		
+	
+		while (opcion !=4) {
+			
+		System.out.println("\nBienvenido al sistema de finanzas de Ciocolattto"
+				+ "\nQue desea realizar el dia de hoy?");
+		
+		System.out.println("\n1.Observar el dinero invertido"
+				+ "\n2.Observar dinero resultante de las ventas"
+				+ "\n3.Observar las ganancias estimadas"
+				+ "\n4.Salir");
+		   opcion = sc.nextInt(); 
+		   
+		   switch (opcion) {
+		   case 1:{
+			    System.out.println("\nDinero invertido en dulces: " + f.getCompra_dulce());
+			    System.out.println("\nDinero invertido en bebidas: " + f.getCompra_bebida());
+			    System.out.println("\nDinero invertido en dulces por paquetes: " + f.getCompra_paquete());
+			    System.out.println("\nDinero invertido en total de inventario: " + f.getDinero_invertido());
+		   break;}
+		   
+		   case 2 :{
+			   System.out.println("\nDinero en venta de dulces: " + f.getVenta_dulce());
+			   System.out.println("\nDinero en venta de bebidas: " + f.getVenta_bebida());
+			   System.out.println("\nDinero en venta de dulces por paquete: " + f.getVenta_paquete());
+			   System.out.println("\nDinero invertido en total de inventario: " + f.getDinero_ventas());
+		   break;}
+		   
+		   case 3 : {
+			   System.out.println("Ganancias estimadas con todo el inventario de la tienda: " + f.getGanancia());
+		   break; }
+		   }
+		
+		
+		}
+	}
+	
 	
 }

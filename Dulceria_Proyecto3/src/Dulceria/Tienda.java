@@ -352,7 +352,57 @@ public class Tienda {
 		}
 		return edad;
 	}
-	//MIRE SI LE APARECE BIEN
+	public void total_compradulce( Finanza f) {
+		int  totalventa_dulce = 0; 
+		int totalcompra_dulce = 0; 
+		
+		for (int i = 0; i < almacen_dulces.length; i ++ ) {
+			
+			int venta_dulces = almacen_dulces[i].getPrecio_venta() * almacen_dulces[i].getCantidad_dulces(); 	
+			
+			int compra_dulces = almacen_dulces[i].getPrecio_compra()* almacen_dulces[i].getCantidad_dulces(); 
+		 
+			totalventa_dulce += venta_dulces;
+			totalcompra_dulce += compra_dulces; 
+		
+		}
+		
+		f.setVenta_dulce(totalventa_dulce);
+		f.setCompra_dulce(totalcompra_dulce);
+		
+	}
+	public void total_comprabebida(Finanza f) {
+		
+		int  totalventa_bebida = 0; 
+		int totalcompra_bebida = 0; 
+		
+		for (int i = 0; i < almacen_bebidas.length; i ++ ) {
+			
+			int venta_bebida= almacen_bebidas[i].getPrecio_venta()* almacen_bebidas[i].getCantidad_bebidas();
+			int compra_bebida = almacen_bebidas[i].getPrecio_compra()* almacen_bebidas[i].getCantidad_bebidas();
+			
+			totalventa_bebida += venta_bebida; 
+			totalcompra_bebida += compra_bebida; 
+		 }
+		f.setVenta_bebida(totalventa_bebida);
+		f.setCompra_bebida(totalcompra_bebida);
+	}
+	public void total_comprapaq(Finanza f) {
+		int  totalventa_paquete = 0; 
+		int totalcompra_paquete = 0; 
+		
+		for (int i = 0; i < almacen_paquetes.length; i ++ ) {
+			
+			int venta_paquete = almacen_paquetes[i].getPrecio_venta()* almacen_paquetes[i].getCantidad(); 
+			int compra_paquete = (int) (almacen_paquetes[i].getPrecio_compra()* almacen_paquetes[i].getCantidad()); 
+			
+			totalventa_paquete += venta_paquete; 
+			totalcompra_paquete += compra_paquete; 
+			
+		}
+		f.setVenta_paquete(totalventa_paquete);
+		f.setCompra_paquete(totalcompra_paquete);
+	}
 	
 
 }
