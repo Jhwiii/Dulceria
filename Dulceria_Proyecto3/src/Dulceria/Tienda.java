@@ -387,6 +387,7 @@ public class Tienda {
 		f.setVenta_bebida(totalventa_bebida);
 		f.setCompra_bebida(totalcompra_bebida);
 	}
+	
 	public void total_comprapaq(Finanza f) {
 		int  totalventa_paquete = 0; 
 		int totalcompra_paquete = 0; 
@@ -405,6 +406,114 @@ public class Tienda {
 	}
 	
 
+	
+	public String editar_dulce(String buscar_dulce,String nombre, String tipo, String descripcion, int valor_compra, int valor_venta, int cantidad) {
+		String dulce_editado = "";
+		for(int a = 0; a<almacen_dulces.length ;a++){
+			if(buscar_dulce.equals(almacen_dulces[a].getNombre())) {
+			if(!nombre.equals("no")) {
+				getAlmacen_dulces()[a].setNombre(nombre);
+			}
+			if(!tipo.equals("no")) {
+				getAlmacen_dulces()[a].setTipo(tipo);
+			}
+			if(!descripcion.equals("no")) {
+				getAlmacen_dulces()[a].setDescripcion(descripcion);
+			}
+			if(valor_compra!=0) {
+				getAlmacen_dulces()[a].setPrecio_compra(valor_compra);
+			}
+			if(valor_venta!=0) {
+				getAlmacen_dulces()[a].setPrecio_venta(valor_venta);
+			}
+			if(cantidad!=0) {
+				getAlmacen_dulces()[a].setCantidad_dulces(cantidad);
+			}
+			dulce_editado = getAlmacen_dulces()[a].toString();
+			}
+		}
+		
+		return dulce_editado;
+	}
+	
+	public String editar_paquetes(String buscar_paquete,String nombre, String tipo, String descripcion,int valor_compra,int valor_venta, int cantidad) {
+		String paquete_editado = "";
+		for(int a = 0; a<almacen_paquetes.length ;a++){
+			if(buscar_paquete.equals(almacen_paquetes[a].getNombre())) {
+			if(!nombre.equals("no")) {
+				getAlmacen_paquetes()[a].setNombre(nombre);
+			}
+			if(!tipo.equals("no")) {
+				getAlmacen_paquetes()[a].setTipo(tipo);
+			}
+			if(!descripcion.equals("no")) {
+				getAlmacen_paquetes()[a].setDescripcion(descripcion);
+			}
+			if(valor_compra!=0) {
+				getAlmacen_paquetes()[a].setPrecio_compra(valor_compra);
+			}
+			if(valor_venta!=0) {
+				getAlmacen_paquetes()[a].setPrecio_venta(valor_venta);
+			}
+			if(cantidad!=0) {
+				getAlmacen_paquetes()[a].setCantidad_paquetes(cantidad);
+			}
+			paquete_editado = getAlmacen_paquetes()[a].toString();
+			}
+		}
+		return paquete_editado;
+	}
+	
+	public String editar_bebidas(String buscar_bebida,String nombre, String tipo, String descripcion,int valor_compra,int valor_venta, int cantidad) {
+		String bebida_editada = "";
+		for(int a = 0; a<almacen_bebidas.length ;a++){
+			if(buscar_bebida.equals(almacen_bebidas[a].getNombre())) {
+			if(!nombre.equals("no")) {
+				getAlmacen_bebidas()[a].setNombre(nombre);
+			}
+			if(!tipo.equals("no")) {
+				getAlmacen_bebidas()[a].setTipo(tipo);
+			}
+			if(!descripcion.equals("no")) {
+				getAlmacen_bebidas()[a].setDescripcion(descripcion);
+			}
+			if(valor_compra!=0) {
+				getAlmacen_bebidas()[a].setPrecio_compra(valor_compra);
+			}
+			if(valor_venta!=0) {
+				getAlmacen_bebidas()[a].setPrecio_venta(valor_venta);
+			}
+			if(cantidad!=0) {
+				getAlmacen_bebidas()[a].setCantidad_bebidas(cantidad);
+			}
+			bebida_editada = getAlmacen_bebidas()[a].toString();
+			}
+		}
+		return bebida_editada;
+	}
+	
+	public String nombres_dulces() {
+		String nombre_dulces = "";
+		for(int a = 0; a<almacen_dulces.length;a++) {
+			nombre_dulces = nombre_dulces + "|" + getAlmacen_dulces()[a].getNombre(); 
+		}
+		return nombre_dulces;
+	}
+	public String nombres_paquetes() {
+		String nombre_paquetes = "";
+		for(int a = 0; a<almacen_paquetes.length;a++) {
+			nombre_paquetes = nombre_paquetes + "|" + getAlmacen_paquetes()[a].getNombre();
+		}
+		return nombre_paquetes;
+	}
+	public String nombres_bebidas() {
+		String nombre_bebidas = "";
+		for(int a = 0;a<almacen_bebidas.length;a++) {
+			nombre_bebidas = nombre_bebidas + "|" + getAlmacen_bebidas()[a].getNombre();
+		}
+		return nombre_bebidas;
+	}
+	
 }
 
 
