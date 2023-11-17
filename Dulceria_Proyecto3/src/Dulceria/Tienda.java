@@ -492,26 +492,29 @@ public class Tienda {
 		return bebida_editada;
 	}
 	
-	public String nombres_dulces() {
-		String nombre_dulces = "";
-		for(int a = 0; a<almacen_dulces.length;a++) {
-			nombre_dulces = nombre_dulces + "|" + getAlmacen_dulces()[a].getNombre(); 
+	public String nombres_dulces(int a, String nombre) {
+		if(a<almacen_dulces.length) {
+			nombre = nombre +"|"+getAlmacen_dulces()[a].getNombre();
+			a = a+1;
+			nombre = nombres_dulces(a,nombre);
 		}
-		return nombre_dulces;
+		return nombre;
 	}
-	public String nombres_paquetes() {
-		String nombre_paquetes = "";
-		for(int a = 0; a<almacen_paquetes.length;a++) {
-			nombre_paquetes = nombre_paquetes + "|" + getAlmacen_paquetes()[a].getNombre();
+	public String nombres_paquetes(int a, String nombre) {
+		if(a<almacen_paquetes.length) {
+			nombre = nombre +"|"+getAlmacen_paquetes()[a].getNombre();
+			a = a+1;
+			nombre = nombres_paquetes(a,nombre);
 		}
-		return nombre_paquetes;
+		return nombre;
 	}
-	public String nombres_bebidas() {
-		String nombre_bebidas = "";
-		for(int a = 0;a<almacen_bebidas.length;a++) {
-			nombre_bebidas = nombre_bebidas + "|" + getAlmacen_bebidas()[a].getNombre();
+	public String nombres_bebidas(int a,String nombre) {
+		if(a<almacen_bebidas.length) {
+			nombre = nombre +"|"+getAlmacen_bebidas()[a].getNombre();
+			a = a+1;
+			nombre=nombres_bebidas(a,nombre);	
 		}
-		return nombre_bebidas;
+		return nombre;
 	}
 	
 	public String editar_usuario(String usuario_actual, String nuevo_usuario) {

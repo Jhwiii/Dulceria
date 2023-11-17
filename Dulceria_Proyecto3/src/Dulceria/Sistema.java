@@ -16,7 +16,6 @@ public class Sistema {
 		
 		//System.out.println(Arrays.toString(tienda.getAlmacen_dulces()));
 		
-		
 		int option1 = 0;
 		while(option1!=3) {
 			System.out.println("TIPO DE ACCESO---1.Encargado--2.Cliente--3.Salir de la Dulceria");
@@ -429,7 +428,7 @@ public class Sistema {
 			option4 = sc.nextInt();
 			switch(option4) {
 			case 1:{
-				System.out.println("Escriba el nombre del dulce que desea editar ("+tienda.nombres_dulces()+")");
+				System.out.println("Escriba el nombre del dulce que desea editar ("+tienda.nombres_dulces(0,"")+")");
 				String dulce = sc.next();
 				dulce = s.ordenar_letras(dulce);
 				if(tienda.disponibilidad_dulces(dulce)==true) {
@@ -465,7 +464,7 @@ public class Sistema {
 				break;
 			}
 			case 2:{
-				System.out.println("Escriba el nombre de paquete de dulces que desea editar ("+tienda.nombres_paquetes()+")");
+				System.out.println("Escriba el nombre de paquete de dulces que desea editar ("+tienda.nombres_paquetes(0,"")+")");
 				String paquete = ac.nextLine();
 				paquete = s.ordenar_letras(paquete);
 				if(tienda.disponibilidad_paquetes(paquete)==true) {
@@ -500,7 +499,7 @@ public class Sistema {
 				break;
 			}
 			case 3:{
-				System.out.println("Escriba el nombre de la bebida que quiere editar \n("+tienda.nombres_bebidas()+")");
+				System.out.println("Escriba el nombre de la bebida que quiere editar \n("+tienda.nombres_bebidas(0,"")+")");
 				String bebida = ac.nextLine();
 				bebida = s.ordenar_letras(bebida);
 				if(tienda.disponibilidad_bebidas(bebida)==true) {
