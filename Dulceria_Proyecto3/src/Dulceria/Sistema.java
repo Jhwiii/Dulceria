@@ -16,7 +16,6 @@ public class Sistema {
 		
 		//System.out.println(Arrays.toString(tienda.getAlmacen_dulces()));
 		
-		
 		int option1 = 0;
 		while(option1!=3) {
 			System.out.println("TIPO DE ACCESO---1.Encargado--2.Cliente--3.Salir de la Dulceria");
@@ -185,7 +184,10 @@ public class Sistema {
 				if(tienda.disponibilidad_paquetes(paquete)==true) {
 					System.out.println("Escriba la cantidad de paquetes de " + paquete + " que desea comprar");
 					int cantidad = sc.nextInt();
-					int estado_compra = tienda.proceso_compra_paquetes(paquete, cantidad);
+					tienda.getFacturas()[0].setNumero_factura(1);
+					tienda.getFacturas()[0].setImpuesto(19);
+					int estado_compra = tienda.proceso_compra_paquetes(paquete, cantidad,tienda.getFacturas());
+					tienda.getFacturas()[0].setTotal_factura(tienda.getFacturas()[0].getObjetos_vendidos()[0].getValor_venta()*tienda.getFacturas()[0].getImpuesto());
 					if(estado_compra == 0){
 						System.out.println("No se cuenta en el inventario con la cantidad de paquetes necesitados, por lo que no se puede completar la venta");
 					}
@@ -193,6 +195,7 @@ public class Sistema {
 						System.out.println("El presupuesto no es suficiente para la compra");
 					}
 					else {
+						System.out.println("numero" + tienda.getFacturas()[0].getNumero_factura()+"\n");
 						System.out.println("Compra realizada");
 					}
 				}
@@ -433,7 +436,7 @@ public class Sistema {
 			option4 = sc.nextInt();
 			switch(option4) {
 			case 1:{
-				System.out.println("Escriba el nombre del dulce que desea editar ("+tienda.nombres_dulces()+")");
+				System.out.println("Escriba el nombre del dulce que desea editar ("+tienda.nombres_dulces(0,"")+")");
 				String dulce = sc.next();
 				dulce = s.ordenar_letras(dulce);
 				if(tienda.disponibilidad_dulces(dulce)==true) {
@@ -469,7 +472,7 @@ public class Sistema {
 				break;
 			}
 			case 2:{
-				System.out.println("Escriba el nombre de paquete de dulces que desea editar ("+tienda.nombres_paquetes()+")");
+				System.out.println("Escriba el nombre de paquete de dulces que desea editar ("+tienda.nombres_paquetes(0,"")+")");
 				String paquete = ac.nextLine();
 				paquete = s.ordenar_letras(paquete);
 				if(tienda.disponibilidad_paquetes(paquete)==true) {
@@ -504,7 +507,7 @@ public class Sistema {
 				break;
 			}
 			case 3:{
-				System.out.println("Escriba el nombre de la bebida que quiere editar \n("+tienda.nombres_bebidas()+")");
+				System.out.println("Escriba el nombre de la bebida que quiere editar \n("+tienda.nombres_bebidas(0,"")+")");
 				String bebida = ac.nextLine();
 				bebida = s.ordenar_letras(bebida);
 				if(tienda.disponibilidad_bebidas(bebida)==true) {
