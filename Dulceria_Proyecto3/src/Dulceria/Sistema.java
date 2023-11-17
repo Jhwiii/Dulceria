@@ -394,9 +394,9 @@ public class Sistema {
 				+ "\n4.Salir");
 		   opcion = sc.nextInt(); 
 		   
-		   tienda.total_comprabebida(f);
+		   tienda.total_comprabebida(0, 0);
 		   tienda.total_compradul(0,0);
-		   tienda.total_comprapaq(f);
+		   tienda.total_comprapaq(0,0);
 		   
 		   switch (opcion) {
 		   case 1:{
