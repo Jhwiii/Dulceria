@@ -10,7 +10,7 @@ public class Sistema {
 
 		Scanner sc = new Scanner(System.in);
 		Sistema s = new Sistema();
-		Finanza f = new Finanza(); 
+		
 		
 		Tienda tienda = new Tienda("Ciocolatto ","Cra 4 # 8-71", "Ciocolatto@gmail.com", 320456788);
 		
@@ -41,7 +41,7 @@ public class Sistema {
 							 break;
 						 }
 						 case 3:{
-							 s.gananciastienda(f, tienda);
+							 s.gananciastienda( tienda);
 						 }
 						 case 4:{
 							 System.out.println("SESION DE ENCARGADO CERRADA");
@@ -377,7 +377,7 @@ public class Sistema {
 		
 	}
 	
-	public void gananciastienda(Finanza f, Tienda tienda) {
+	public void gananciastienda(Tienda tienda) {
 		Scanner sc = new Scanner(System.in); 
 		
 		int opcion = 0; 
