@@ -5,14 +5,18 @@ import java.util.Arrays;
 public class Tienda {
 	private String nombre;
 	private String direccion;
+	private int telefono; 
+	private String correo; 
 	private Bebida almacen_bebidas[];
 	private Dulce_Unidad almacen_dulces[];
 	private Dulce_Paquete almacen_paquetes[];
 	private Calificacion calificaciones[];
 	private Encargado trabajador;
 	private Cliente cliente;
-	private String correo; 
-	private int telefono; 
+	private Factura facturas[];
+	
+	
+	
 	
 	
 	public String getDireccion() {
@@ -96,6 +100,12 @@ public class Tienda {
 		this.cliente = cliente;
 	}
 	
+	public Factura[] getFacturas() {
+		return facturas;
+	}
+	public void setFacturas(Factura[] facturas) {
+		this.facturas = facturas;
+	}
 	
 	public Tienda() {
 		
@@ -119,6 +129,10 @@ public class Tienda {
 			calificaciones[i] = new Calificacion();
 		}
 		
+		facturas = new Factura[5];
+		for(int i = 0;9<facturas.length;i++) {
+			facturas[i] = new Factura();
+		}
 	}
 	
 	
@@ -128,6 +142,9 @@ public class Tienda {
 		this.direccion = direccion;
 		this.correo= correo; 
 		this.telefono = telefono; 
+		trabajador = new Encargado("Juan Perez",23,12341.9,"elperritojuan","1234masmelo");
+		cliente = new Cliente();
+		
 		
 		almacen_bebidas = new Bebida[10];
 		for(int i = 0; i<almacen_bebidas.length;i++) {
@@ -153,9 +170,10 @@ public class Tienda {
 		}
 		calificaciones();
 		
-		
-		trabajador = new Encargado("Juan Perez",23,12341.9,"elperritojuan","1234masmelo");
-		cliente = new Cliente();
+		facturas = new Factura[5];
+		for(int i = 0;9<facturas.length;i++) {
+			facturas[i] = new Factura();
+		}
 	}
 	
 
@@ -293,7 +311,7 @@ public class Tienda {
 		return disponibilidad;
 	}
 	
-	public int proceso_compra_paquetes(String paquete,int cantidad) {
+	public int proceso_compra_paquetes(String paquete,int cantidad, Factura[] facturas) {
 		int estado = 0;
 		for(int a = 0;a<almacen_paquetes.length;a++) {
 			if(paquete.equals(almacen_paquetes[a].getNombre())) {
@@ -306,6 +324,9 @@ public class Tienda {
 						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
 						estado = 2;
+						facturas[a].getObjetos_vendidos()[a].setNombre(paquete);
+						facturas[a].getObjetos_vendidos()[a].setCantidad(cantidad);
+						facturas[a].getObjetos_vendidos()[a].setValor_venta(valor_compra);
 					}
 				}
 			}

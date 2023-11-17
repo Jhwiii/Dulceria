@@ -180,7 +180,10 @@ public class Sistema {
 				if(tienda.disponibilidad_paquetes(paquete)==true) {
 					System.out.println("Escriba la cantidad de paquetes de " + paquete + " que desea comprar");
 					int cantidad = sc.nextInt();
-					int estado_compra = tienda.proceso_compra_paquetes(paquete, cantidad);
+					tienda.getFacturas()[0].setNumero_factura(1);
+					tienda.getFacturas()[0].setImpuesto(19);
+					int estado_compra = tienda.proceso_compra_paquetes(paquete, cantidad,tienda.getFacturas());
+					tienda.getFacturas()[0].setTotal_factura(tienda.getFacturas()[0].getObjetos_vendidos()[0].getValor_venta()*tienda.getFacturas()[0].getImpuesto());
 					if(estado_compra == 0){
 						System.out.println("No se cuenta en el inventario con la cantidad de paquetes necesitados, por lo que no se puede completar la venta");
 					}
@@ -188,6 +191,7 @@ public class Sistema {
 						System.out.println("El presupuesto no es suficiente para la compra");
 					}
 					else {
+						System.out.println("numero" + tienda.getFacturas()[0].getNumero_factura()+"\n");
 						System.out.println("Compra realizada");
 					}
 				}

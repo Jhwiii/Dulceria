@@ -1,5 +1,7 @@
 package Dulceria;
 
+import java.util.Arrays;
+
 public class Factura {
 	
 	private int numero_factura; 
@@ -58,6 +60,11 @@ public class Factura {
 		}
 		this.impuesto = impuesto;
 		this.total_factura = total_factura;
+	}
+	@Override
+	public String toString() {
+		return "Factura [numero_factura=" + numero_factura + ", objetos_vendidos=" + Arrays.toString(objetos_vendidos)
+				+ ", impuesto=" + impuesto + ", total_factura=" + total_factura + "]";
 	} 
 	
 	
