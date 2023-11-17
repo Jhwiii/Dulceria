@@ -392,26 +392,26 @@ public class Sistema {
 		   opcion = sc.nextInt(); 
 		   
 		   tienda.total_comprabebida(f);
-		   tienda.total_compradulce(f);
+		   tienda.total_compradul(0,0);
 		   tienda.total_comprapaq(f);
 		   
 		   switch (opcion) {
 		   case 1:{
-			    System.out.println("\nDinero invertido en dulces: " + f.getCompra_dulce());
-			    System.out.println("\nDinero invertido en bebidas: " + f.getCompra_bebida());
-			    System.out.println("\nDinero invertido en dulces por paquetes: " + f.getCompra_paquete());
-			    System.out.println("\nDinero invertido en total de inventario: " + f.getDinero_invertido());
+			    System.out.println("\nDinero invertido en dulces: " + tienda.getTotal_compradulce() );
+			    System.out.println("\nDinero invertido en bebidas: "  );
+			    System.out.println("\nDinero invertido en dulces por paquetes: " );
+			    System.out.println("\nDinero invertido en total de inventario: "  );
 		   break;}
 		   
 		   case 2 :{
-			   System.out.println("\nDinero en venta de dulces: " + f.getVenta_dulce());
-			   System.out.println("\nDinero en venta de bebidas: " + f.getVenta_bebida());
-			   System.out.println("\nDinero en venta de dulces por paquete: " + f.getVenta_paquete());
-			   System.out.println("\nDinero invertido en total de inventario: " + f.getDinero_ventas());
+			   System.out.println("\nDinero en venta de dulces: " );
+			   System.out.println("\nDinero en venta de bebidas: "  );
+			   System.out.println("\nDinero en venta de dulces por paquete: " );
+			   System.out.println("\nDinero invertido en total de inventario: "  );
 		   break;}
 		   
 		   case 3 : {
-			   System.out.println("Ganancias estimadas con todo el inventario de la tienda: " + f.getGanancia());
+			   System.out.println("Ganancias estimadas con todo el inventario de la tienda: " );
 		   break; }
 		   case 4:{
 			   System.out.println("Vamos por mas felicidad para los clientes y ganancias para la tienda");

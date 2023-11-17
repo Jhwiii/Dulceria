@@ -13,8 +13,16 @@ public class Tienda {
 	private Cliente cliente;
 	private String correo; 
 	private int telefono; 
+	private int total_compradulce; 
 	
 	
+	
+	public int getTotal_compradulce() {
+		return total_compradulce;
+	}
+	public void setTotal_compradulce(int total_compradulce) {
+		this.total_compradulce = total_compradulce;
+	}
 	public String getDireccion() {
 		return direccion;
 	}
@@ -352,24 +360,25 @@ public class Tienda {
 		}
 		return edad;
 	}
-	public void total_compradulce( Finanza f) {
-		int  totalventa_dulce = 0; 
-		int totalcompra_dulce = 0; 
-		
-		for (int i = 0; i < almacen_dulces.length; i ++ ) {
+	
+	
+	public int total_compradul( int i, int total_compradul ) {
+	 
+		if (i < almacen_dulces.length) {
 			
-			int venta_dulces = almacen_dulces[i].getPrecio_venta() * almacen_dulces[i].getCantidad_dulces(); 	
+			total_compradul = almacen_dulces[i].getPrecio_venta()* almacen_dulces[i].getCantidad_dulces();
+			i++; 
 			
-			int compra_dulces = almacen_dulces[i].getPrecio_compra()* almacen_dulces[i].getCantidad_dulces(); 
-		 
-			totalventa_dulce += venta_dulces;
-			totalcompra_dulce += compra_dulces; 
+			total_compradul = total_compradul(i, total_compradul); 
+			
+			total_compradulce += total_compradul; 
+			
+			return total_compradulce;	
 		
+		} else {
+			
+			return total_compradul; 
 		}
-		
-		f.setVenta_dulce(totalventa_dulce);
-		f.setCompra_dulce(totalcompra_dulce);
-		
 	}
 	public void total_comprabebida(Finanza f) {
 		
