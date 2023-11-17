@@ -30,7 +30,7 @@ public class Sistema {
 			 int option5 = 0;
 					 while(option5!=4) {
 						 System.out.println("LAS OPCIONES DISPONIBLES EN EL MENU DE ENCARGADO, SON: "
-									+ "\n1.Editar productos de la tienda\n2.Editar propiedades de la tienda\n3.Opciones de contabilidad");
+									+ "\n1.Editar productos de la tienda\n2.Editar propiedades de la tienda\n3.Opciones de contabilidad\n4.Salir");
 						 option5 = sc.nextInt();
 						 switch(option5) {
 						 case 1:{
@@ -38,6 +38,7 @@ public class Sistema {
 							 break;
 						 }
 						 case 2:{
+							 s.editar_propiedades(tienda);
 							 break;
 						 }
 						 case 3:{
@@ -251,9 +252,6 @@ public class Sistema {
 
 	}
 	
-	public void compra() {
-		
-	}
 	public void menu_cliente() {
 		System.out.println("LAS OPCIONES DISPONIBLES EN NUESTRO MENU, SON:"
 				+ "\n1.Gomitas por Unidad disponibles"
@@ -544,6 +542,58 @@ public class Sistema {
 			
 		}
 			
+	}
+	
+	public void editar_propiedades(Tienda tienda) {
+		Scanner sc = new Scanner(System.in);
+		int option6 = 0;
+		while(option6 !=5) {
+			System.out.println("Eligael numero de la opcion a editar:\n1.Cambiar usuario\n2.Cambiar contraseña\n3.Editar nombre de tienda\n4.Editar dirrecion\n5.Salir");
+			option6 = sc.nextInt();
+			switch(option6){
+			case 1:{
+				System.out.println("Escriba el usuario actual");
+				String usuario_actual = sc.next();
+				System.out.println("Escriba el nuevo usuario");
+				String nuevo_usuario = sc.next();
+				System.out.println(tienda.editar_usuario(usuario_actual, nuevo_usuario));
+				break;
+			}
+			case 2:{
+				System.out.println("Escriba la contraseña actual");
+				String contraseña_actual = sc.next();
+				System.out.println("Escriba la nueva contraseña");
+				String nueva_contraseña1 = sc.next();
+				System.out.println("Escriba de nuevo la nueva contraseña");
+				String nueva_contraseña2 = sc.next();
+				System.out.println(tienda.editar_contraseña(contraseña_actual, nueva_contraseña1, nueva_contraseña2));
+				break;
+			}
+			case 3:{
+				System.out.println("Escriba el nuevo nombre de la tienda");
+				String nuevo_nombre = sc.next();
+				tienda.setNombre(nuevo_nombre);
+				System.out.println("Nombre guardado con exito");
+				break;
+			}
+			case 4:{
+				System.out.println("Escriba la nueva dirrecion de la tienda");
+				String nueva_dirrecion = sc.next();
+				tienda.setDirreccion(nueva_dirrecion);
+				System.out.println("Dirrecion guardada con exito");
+				break;
+			}
+			case 5:{
+				System.out.println("Cambios guardados");
+				break;
+			}
+			default:{
+				System.out.println("Opcion no disponible");
+				break;
+			}
+			}
+		}
+		
 	}
 	
 	

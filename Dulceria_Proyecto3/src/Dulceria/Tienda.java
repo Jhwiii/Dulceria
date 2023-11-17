@@ -514,6 +514,38 @@ public class Tienda {
 		return nombre_bebidas;
 	}
 	
+	public String editar_usuario(String usuario_actual, String nuevo_usuario) {
+		String mensaje = "";
+		System.out.println();
+		if(login_user(false, usuario_actual)==true) {
+			trabajador.setUsuario_login(nuevo_usuario);
+			mensaje = "Usuario actualizado correctamente";
+		}
+		else {
+			mensaje = "El usuario no coincide, usuario no actualizado";
+		}
+		return mensaje;
+	}
+	
+	
+	public String editar_contraseña(String contraseña_actual, String contraseña1,String contraseña2) {
+		String mensaje = "";
+		if(login_contraseña(false, contraseña_actual)==true) {
+			if(contraseña1.equals(contraseña2)) {
+				trabajador.setContraseña_login(contraseña1);
+				mensaje = "Contraseña actualizada correctamente";
+			}
+			else {
+				mensaje = "La nueva contraseña no coincide";
+			}
+		}
+		else {
+			mensaje = "La contraseña actual no coincide";
+		}
+		return mensaje;
+	}
+	
+	
 }
 
 

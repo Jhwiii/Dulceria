@@ -3,9 +3,10 @@ package Dulceria;
 public class Factura {
 	
 	private int numero_factura; 
-	private int objetos_vendidos; 
+	private int objetos_vendidos;
 	private double impuesto; 
 	private double total_factura;
+	
 	
 	
 	public int getNumero_factura() {
