@@ -24,13 +24,39 @@ public class Sistema {
 			switch(option1) {
 			case 1:{
 				 if(s.validar_encargado(tienda)==true) {
+
 					 System.out.println("Eliga la opcion de encargado");
 			
-				 s.gananciastienda(f);
-				 
+			 int option5 = 0;
+					 while(option5!=4) {
+						 System.out.println("LAS OPCIONES DISPONIBLES EN EL MENU DE ENCARGADO, SON: "
+									+ "\n1.Editar productos de la tienda\n2.Editar propiedades de la tienda\n3.Opciones de contabilidad");
+						 option5 = sc.nextInt();
+						 switch(option5) {
+						 case 1:{
+							 s.editar_productos(tienda,s);
+							 break;
+						 }
+						 case 2:{
+							 break;
+						 }
+						 case 3:{
+							 s.gananciastienda(f, tienda);
+						 }
+						 case 4:{
+							 System.out.println("SESION DE ENCARGADO CERRADA");
+							 break;
+						 }
+						 default:{
+							 System.out.println("Eliga una de las opciones disponibles");
+							 break;
+						 }
+						 }
+					 }				 
+
 				 }
 				 else{
-					 System.out.println("Usuario bloqueado");
+					 System.out.println("Usuario bloqueado, sesion cerrada");
 					 option1 = 3;
 				 }
 				 break;
@@ -120,17 +146,11 @@ public class Sistema {
 		String resultado = palabra.toUpperCase().charAt(0) + palabra.substring(1, palabra.length()).toLowerCase();
 		return resultado;
 	}
-	
-	
-	public void menu_encargado() {	
-		System.out.println("LAS OPCIONES DISPONIBLES EN EL MENU DE ENCARGADO, SON: "
-				+ "\n1.");
-		
-		
-	}
+
 	
 	public void menu_compras(Tienda tienda, Sistema s) {
 		Scanner sc = new Scanner(System.in);
+		Scanner ac = new Scanner(System.in);
 		int option3 = 0;
 		while(option3 !=5) {
 			System.out.println("LOS OBJETOS DISPONIBLES PARA LA VENTA SON, ELIGA UNO:"
@@ -140,7 +160,7 @@ public class Sistema {
 			case 1:{
 				System.out.println("Los dulces disponibles son:" + Arrays.toString(tienda.getAlmacen_dulces()));
 				System.out.println("ESCRIBA EL NOMBRE DEL DULCE QUE DESEA COMPRAR");
-				String dulce = sc.next();
+				String dulce = ac.nextLine();
 				dulce = s.ordenar_letras(dulce);
 				if(dulce.equals("Feligoma")) {
 					if(tienda.mayor_edad()==true) {
@@ -159,7 +179,7 @@ public class Sistema {
 			case 2 :{
 				System.out.println("Los paquetes de dulces disponibles son: \n"+Arrays.toString(tienda.getAlmacen_paquetes()));
 				System.out.println("ESCRIBA EL NOMBRE DEL PAQUETE DE DULCES QUE DESEA COMPRAR");
-				String paquete = sc.next();
+				String paquete = ac.nextLine();
 				paquete = s.ordenar_letras(paquete);
 				if(tienda.disponibilidad_paquetes(paquete)==true) {
 					System.out.println("Escriba la cantidad de paquetes de " + paquete + " que desea comprar");
@@ -183,7 +203,7 @@ public class Sistema {
 			case 3:{
 				System.out.println("Las bebidas disponibles son:\n " + Arrays.toString(tienda.getAlmacen_bebidas()));
 				System.out.println("ESCRIBA EL NOMBRE DE LA BEBIDA QUE DESEA COMPRAR");
-				String bebida = sc.next();
+				String bebida = ac.nextLine();
 				bebida = s.ordenar_letras(bebida);
 				if(tienda.disponibilidad_bebidas(bebida)==true) {
 					System.out.println("Escriba la cantidad de bebidas de " + bebida+ " que desea comprar");
@@ -356,7 +376,7 @@ public class Sistema {
 		
 	}
 	
-	public void gananciastienda( Finanza f) {
+	public void gananciastienda(Finanza f, Tienda tienda) {
 		Scanner sc = new Scanner(System.in); 
 		
 		int opcion = 0; 
@@ -372,6 +392,10 @@ public class Sistema {
 				+ "\n3.Observar las ganancias estimadas"
 				+ "\n4.Salir");
 		   opcion = sc.nextInt(); 
+		   
+		   tienda.total_comprabebida(f);
+		   tienda.total_compradulce(f);
+		   tienda.total_comprapaq(f);
 		   
 		   switch (opcion) {
 		   case 1:{
@@ -391,11 +415,145 @@ public class Sistema {
 		   case 3 : {
 			   System.out.println("Ganancias estimadas con todo el inventario de la tienda: " + f.getGanancia());
 		   break; }
+		   case 4:{
+			   System.out.println("Vamos por mas felicidad para los clientes y ganancias para la tienda");
+			   break;
+		   }
 		   }
 		
 		
 		}
 	}
+	
+	public void editar_productos(Tienda tienda,Sistema s) {
+		Scanner ac = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
+		int option4 = 0;
+		while(option4!=4){
+			System.out.println("Este es el menu para editar productos de la tienda, eliga que opcion desea editar"
+					+ "\n1.Editar dulces por unidad\n2.Editar dulces por paquete\n3.Editar bebidas\n4.Salir");
+			option4 = sc.nextInt();
+			switch(option4) {
+			case 1:{
+				System.out.println("Escriba el nombre del dulce que desea editar ("+tienda.nombres_dulces()+")");
+				String dulce = sc.next();
+				dulce = s.ordenar_letras(dulce);
+				if(tienda.disponibilidad_dulces(dulce)==true) {
+					System.out.println("A continuacion digite lo que quiere editar segun lo pida el sistema, si no quiere editar algun objeto digite 'no'");
+					System.out.println("Escriba el nuevo nombre, si no lo quiere editar, digite 'no'");
+					String nuevo_nombre_dulce = sc.next();
+					System.out.println("Los dulces pueden ser gomitas, chocolates, bombones o caramelos");
+					String tipo = sc.next();
+					System.out.println("Escriba una nueva descripcion para el producto");
+					String descripcion = ac.nextLine();
+					System.out.println("A partir de ahora si no quiere editar, escriba 0");
+					int nuevo_precio_compra = 0;
+					do {
+						System.out.println("Escriba nuevo precio de compra");
+						nuevo_precio_compra = sc.nextInt();
+					}while(nuevo_precio_compra<0);
+					int nuevo_precio_venta = 0;
+					do {
+						System.out.println("Escriba nuevo precio de venta");
+						nuevo_precio_venta = sc.nextInt();
+					}while(nuevo_precio_venta<0);
+					int nueva_cantidad = 0;
+					do {
+						System.out.println("Escriba la nueva cantidad de gomas disponibles\"");
+						nueva_cantidad = sc.nextInt();
+					}while(nueva_cantidad<0);
+					System.out.println("El dulce modificado es: " + tienda.editar_dulce(dulce, nuevo_nombre_dulce, tipo, descripcion, nuevo_precio_compra, nuevo_precio_venta, nueva_cantidad));
+
+				}
+				else {
+					System.out.println("El dulce no se encuentra en el inventario");
+				}
+				break;
+			}
+			case 2:{
+				System.out.println("Escriba el nombre de paquete de dulces que desea editar ("+tienda.nombres_paquetes()+")");
+				String paquete = ac.nextLine();
+				paquete = s.ordenar_letras(paquete);
+				if(tienda.disponibilidad_paquetes(paquete)==true) {
+					System.out.println("A continuacion digite lo que quiere editar segun lo pida el sistema, si no quiere editar algun objeto digite 'no'");
+					System.out.println("Escriba el nuevo nombre, si no lo quiere editar, digite 'no'");
+					String nuevo_nombre_paquete = ac.nextLine();
+					System.out.println("Los paquetes de dulces pueden ser gomitas, chocolates, bombones o caramelos");
+					String tipo = sc.next();
+					System.out.println("Escriba una nueva descripcion para el producto");
+					String descripcion = ac.nextLine();
+					System.out.println("A partir de ahora si no quiere editar, escriba 0");
+					int nuevo_precio_compra = 0;
+					do {
+						System.out.println("Escriba nuevo precio de compra");
+						nuevo_precio_compra = sc.nextInt();
+					}while(nuevo_precio_compra<0);
+					int nuevo_precio_venta = 0;
+					do {
+						System.out.println("Escriba nuevo precio de venta");
+						nuevo_precio_venta = sc.nextInt();
+					}while(nuevo_precio_venta<0);
+					int nueva_cantidad = 0;
+					do {
+						System.out.println("Escriba la nueva cantidad de paquetes disponibles\"");
+						nueva_cantidad = sc.nextInt();
+					}while(nueva_cantidad<0);
+					System.out.println("El paquete modificado es: " + tienda.editar_paquetes(paquete, nuevo_nombre_paquete, tipo, descripcion, nuevo_precio_compra, nuevo_precio_venta, nueva_cantidad));
+				}
+				else {
+					System.out.println("El paquete "+paquete+"no se encuentra en el inventario");
+				}
+				break;
+			}
+			case 3:{
+				System.out.println("Escriba el nombre de la bebida que quiere editar \n("+tienda.nombres_bebidas()+")");
+				String bebida = ac.nextLine();
+				bebida = s.ordenar_letras(bebida);
+				if(tienda.disponibilidad_bebidas(bebida)==true) {
+					System.out.println("A continuacion digite lo que quiere editar segun lo pida el sistema, si no quiere editar algun objeto digite 'no'");
+					System.out.println("Escriba el nuevo nombre, si no lo quiere editar, digite 'no'");
+					String nuevo_nombre_bebida = ac.nextLine();
+					System.out.println("Las bebidas pueden ser bebidas azucaradas, jugos o aguas");
+					String tipo = ac.nextLine();
+					System.out.println("Escriba una nueva descripcion para el producto");
+					String descripcion = ac.nextLine();
+					System.out.println("A partir de ahora si no quiere editar, escriba 0");
+					int nuevo_precio_compra = 0;
+					do {
+						System.out.println("Escriba nuevo precio de compra");
+						nuevo_precio_compra = sc.nextInt();
+					}while(nuevo_precio_compra<0);
+					int nuevo_precio_venta = 0;
+					do {
+						System.out.println("Escriba nuevo precio de venta");
+						nuevo_precio_venta = sc.nextInt();
+					}while(nuevo_precio_venta<0);
+					int nueva_cantidad = 0;
+					do {
+						System.out.println("Escriba la nueva cantidad de bebidas disponibles\"");
+						nueva_cantidad = sc.nextInt();
+					}while(nueva_cantidad<0);
+					System.out.println("La bebida modificada es: " + tienda.editar_bebidas(bebida, nuevo_nombre_bebida, tipo, descripcion, nuevo_precio_compra, nuevo_precio_venta, nueva_cantidad));
+				}
+				else {
+					System.out.println("La bebida "+bebida+" no se encuentra disponible ");
+				}
+				break;
+			}
+			}
+			
+		}
+			
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
