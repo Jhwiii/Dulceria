@@ -25,7 +25,7 @@ public class Sistema {
 			case 1:{
 				 if(s.validar_encargado(tienda)==true) {
 					 System.out.println("Eliga la opcion de encargado");
-				 
+			
 				 s.gananciastienda(f);
 				 
 				 }
