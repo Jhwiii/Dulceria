@@ -397,32 +397,37 @@ public class Sistema {
 		   tienda.total_comprabebida(0, 0);
 		   tienda.total_compradul(0,0);
 		   tienda.total_comprapaq(0,0);
+		   tienda.venta_dulces(0, 0);
+		   tienda.venta_bebida(0, 0);
+		   tienda.venta_paquete(0, 0);
+		   tienda.total_dineroinvertido();
+		   tienda.total_dineroinvertido();
+		   tienda.total_dineroventas();
+		   tienda.ganancia();
 		   
 		   switch (opcion) {
 		   case 1:{
 			    System.out.println("\nDinero invertido en dulces: " + tienda.getTotal_compradulce() );
-			    System.out.println("\nDinero invertido en bebidas: "  );
-			    System.out.println("\nDinero invertido en dulces por paquetes: " );
-			    System.out.println("\nDinero invertido en total de inventario: "  );
+			    System.out.println("\nDinero invertido en bebidas: " + tienda.getTotal_comprabebida() );
+			    System.out.println("\nDinero invertido en dulces por paquetes: " + tienda.getTotal_comprapaquete());
+			    System.out.println("\nDinero invertido en total de inventario: " + tienda.getDinero_invertido());
 		   break;}
 		   
 		   case 2 :{
-			   System.out.println("\nDinero en venta de dulces: " );
-			   System.out.println("\nDinero en venta de bebidas: "  );
-			   System.out.println("\nDinero en venta de dulces por paquete: " );
-			   System.out.println("\nDinero invertido en total de inventario: "  );
+			   System.out.println("\nDinero en venta de dulces: " + tienda.getTotal_ventadulce());
+			   System.out.println("\nDinero en venta de bebidas: " + tienda.getTotal_ventabebida() );
+			   System.out.println("\nDinero en venta de dulces por paquete: " + tienda.getTotal_comprapaquete());
+			   System.out.println("\nDinero estimado en ventas: " + tienda.getDinero_ventas() );
 		   break;}
 		   
 		   case 3 : {
-			   System.out.println("Ganancias estimadas con todo el inventario de la tienda: " );
+			   System.out.println("Ganancias estimadas con todo el inventario de la tienda: " + tienda.getGanancia());
 		   break; }
 		   case 4:{
 			   System.out.println("Vamos por mas felicidad para los clientes y ganancias para la tienda");
 			   break;
+		     }
 		   }
-		   }
-		
-		
 		}
 	}
 	
@@ -551,7 +556,7 @@ public class Sistema {
 		Scanner sc = new Scanner(System.in);
 		int option6 = 0;
 		while(option6 !=5) {
-			System.out.println("Eligael numero de la opcion a editar:\n1.Cambiar usuario\n2.Cambiar contraseña\n3.Editar nombre de tienda\n4.Editar dirrecion\n5.Salir");
+			System.out.println("Elija el numero de la opcion a editar:\n1.Cambiar usuario\n2.Cambiar contraseña\n3.Editar nombre de tienda\n4.Editar dirrecion\n5.Salir");
 			option6 = sc.nextInt();
 			switch(option6){
 			case 1:{
@@ -580,10 +585,10 @@ public class Sistema {
 				break;
 			}
 			case 4:{
-				System.out.println("Escriba la nueva dirrecion de la tienda");
+				System.out.println("Escriba la nueva direccion de la tienda");
 				String nueva_dirrecion = sc.next();
 				tienda.setDirreccion(nueva_dirrecion);
-				System.out.println("Dirrecion guardada con exito");
+				System.out.println("Direccion guardada con exito");
 				break;
 			}
 			case 5:{

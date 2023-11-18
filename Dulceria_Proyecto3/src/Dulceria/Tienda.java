@@ -338,7 +338,7 @@ public class Tienda {
 	}
 	
 	//metodo donde se inicia como tal la compra, se analiza si la cantidad de dulces que necesita el cliente esta disponible en el almacen
-	//tambien se mira si el valor de los dulces es se puede pagar con el presupuesto del cliente, se descuentan los dulces y el presupuesto
+	//tambien se mira si el valor de los dulces  se puede pagar con el presupuesto del cliente, se descuentan los dulces y el presupuesto
 	//retorna un numero entre 0 y 2, ya que son las tres posibles situaciones que pueden ocurrir
 	public int proceso_compra_dulces(int cantidad, String dulce) {
 		int estado = 0;//si retorna el valor de 0, la cantidad de dulces solicitados es mayor a la de dulces disponibles
@@ -435,12 +435,11 @@ public class Tienda {
 		return edad;
 	}
 	
-	
 	public int total_compradul( int i, int total_compradul ) {
 	 
 		if (i < almacen_dulces.length) {
 			
-			total_compradul = almacen_dulces[i].getPrecio_venta()* almacen_dulces[i].getCantidad_dulces();
+			total_compradul = almacen_dulces[i].getPrecio_compra()* almacen_dulces[i].getCantidad_dulces();
 			i++; 
 			
 			total_compradul = total_compradul(i, total_compradul); 
@@ -458,7 +457,7 @@ public class Tienda {
 	
 		if (i < almacen_bebidas.length) {
 			
-			total_comprabebi = almacen_bebidas[i].getPrecio_venta()* almacen_bebidas[i].getCantidad_bebidas(); 
+			total_comprabebi = almacen_bebidas[i].getPrecio_compra()* almacen_bebidas[i].getCantidad_bebidas(); 
 			i++; 
 			
 			total_comprabebi = total_comprabebida(i, total_comprabebi); 
@@ -471,15 +470,13 @@ public class Tienda {
 			
 			return total_comprabebi; 
 		}
-		
 	}
 	
 	public int total_comprapaq(int i, int total_comprapaq ) {
 	
-
 		if (i < almacen_paquetes.length) {
 			
-			total_comprapaq = almacen_paquetes[i].getPrecio_venta()* almacen_paquetes[i].getCantidad_paquetes(); 
+			total_comprapaq = (int) (almacen_paquetes[i].getPrecio_compra() * almacen_paquetes[i].getCantidad_paquetes()) ; 
 			i++; 
 			
 			total_comprapaq = total_comprapaq(i, total_comprapaq); 
@@ -489,12 +486,88 @@ public class Tienda {
 			return total_comprapaquete; 	
 		
 		} else {
-			
 			return total_comprapaq; 
 		}
-		
-
 	}
+	
+	public int venta_dulces( int i, int total_ventadul) {
+		
+    if (i < almacen_dulces.length) {
+			
+			total_ventadul = almacen_dulces[i].getPrecio_venta()* almacen_dulces[i].getCantidad_dulces();
+			i++; 
+			
+			total_ventadul = venta_dulces(i, total_ventadul ); 
+		
+			total_ventadulce += total_ventadul; 
+			
+		return total_ventadulce; 
+       
+          } else {
+        	  
+    	   return total_ventadul; 
+       }
+	}
+	public int venta_bebida(int i, int total_ventabebi) {
+		
+		if  ( i < almacen_bebidas.length) {
+			
+		 total_ventabebi = almacen_bebidas[i].getPrecio_venta()* almacen_bebidas[i].getCantidad_bebidas(); 
+		 i++;
+		 
+		 total_ventabebi = venta_bebida(i, total_ventabebi); 
+		
+		total_ventabebida += total_ventabebi; 
+		
+		return total_ventabebida; 	
+		
+		} else {
+			
+			return total_ventabebi; 
+		}
+	}
+	
+	public int venta_paquete(int i, int total_ventapaq) {
+		
+		if (i < almacen_paquetes.length) {
+			
+			 total_ventapaq = almacen_paquetes[i].getPrecio_venta() * almacen_paquetes[i].getCantidad_paquetes(); 
+			 i++;
+			 
+			 total_ventapaq = venta_paquete( i, total_ventapaq );
+			 
+			 total_ventapaquete = total_ventapaq; 
+			 
+			 return total_ventapaquete; 
+			
+		}else {
+			
+			return total_ventapaq;
+		}
+	}
+	public int total_dineroinvertido() {
+		
+		dinero_invertido += total_comprapaquete + total_comprabebida + total_compradulce ;
+		
+		return dinero_invertido; 
+	}
+	public int total_dineroventas() {
+		
+	
+		dinero_ventas += total_ventapaquete + total_ventabebida + total_ventadulce ; 
+		
+		
+		return dinero_ventas; 
+	}
+	public int ganancia () {
+		total_dineroinvertido(); 
+		total_dineroventas();		
+		
+		ganancia += dinero_ventas - dinero_invertido; 
+					
+	    return ganancia; 
+	}
+	
 	
 	public String editar_dulce(String buscar_dulce,String nombre, String tipo, String descripcion, int valor_compra, int valor_venta, int cantidad) {
 		String dulce_editado = "";
