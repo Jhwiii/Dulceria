@@ -24,7 +24,7 @@ public class Tienda {
 	private int dinero_ventas; 
 	private int ganancia;
 	
-	
+
 
 	public int getDinero_invertido() {
 		return dinero_invertido;
@@ -74,6 +74,7 @@ public class Tienda {
 	public void setTotal_ventabebida(int total_ventabebida) {
 		this.total_ventabebida = total_ventabebida;
 	}
+
 	public int getTotal_compradulce() {
 		return total_compradulce;
 	}
@@ -161,6 +162,7 @@ public class Tienda {
 		this.cliente = cliente;
 	}
 	
+	
 	public Factura[] getFacturas() {
 		return facturas;
 	}
@@ -191,7 +193,7 @@ public class Tienda {
 		}
 		
 		facturas = new Factura[5];
-		for(int i = 0;9<facturas.length;i++) {
+		for(int i = 0;i<facturas.length;i++) {
 			facturas[i] = new Factura();
 		}
 	}
@@ -232,7 +234,7 @@ public class Tienda {
 		calificaciones();
 		
 		facturas = new Factura[5];
-		for(int i = 0;9<facturas.length;i++) {
+		for(int i = 0;i<facturas.length;i++) {
 			facturas[i] = new Factura();
 		}
 	}
@@ -340,7 +342,7 @@ public class Tienda {
 	//metodo donde se inicia como tal la compra, se analiza si la cantidad de dulces que necesita el cliente esta disponible en el almacen
 	//tambien se mira si el valor de los dulces  se puede pagar con el presupuesto del cliente, se descuentan los dulces y el presupuesto
 	//retorna un numero entre 0 y 2, ya que son las tres posibles situaciones que pueden ocurrir
-	public int proceso_compra_dulces(int cantidad, String dulce) {
+	public int proceso_compra_dulces(int cantidad, String dulce,int num_objeto_vendido, int num_factura) {
 		int estado = 0;//si retorna el valor de 0, la cantidad de dulces solicitados es mayor a la de dulces disponibles
 		for(int a = 0;a<almacen_dulces.length;a++) {
 			if(dulce.equals(almacen_dulces[a].getNombre())) {
@@ -353,6 +355,11 @@ public class Tienda {
 						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
 						estado = 2;//si retorna 2 la compra fue he hecha con exito
+						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setCantidad(cantidad);
+						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setNombre(dulce);
+						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setValor_venta(valor_compra);
+						getFacturas()[num_factura].setTotal_factura(getFacturas()[num_factura].getTotal_factura()+ valor_compra);
+						
 					}
 				}
 			}
@@ -372,7 +379,7 @@ public class Tienda {
 		return disponibilidad;
 	}
 	
-	public int proceso_compra_paquetes(String paquete,int cantidad, Factura[] facturas) {
+	public int proceso_compra_paquetes(String paquete,int cantidad, int num_objeto_vendido, int num_factura) {
 		int estado = 0;
 		for(int a = 0;a<almacen_paquetes.length;a++) {
 			if(paquete.equals(almacen_paquetes[a].getNombre())) {
@@ -385,9 +392,11 @@ public class Tienda {
 						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
 						estado = 2;
-						facturas[a].getObjetos_vendidos()[a].setNombre(paquete);
-						facturas[a].getObjetos_vendidos()[a].setCantidad(cantidad);
-						facturas[a].getObjetos_vendidos()[a].setValor_venta(valor_compra);
+						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setCantidad(cantidad);
+						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setNombre(paquete);
+						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setValor_venta(valor_compra);
+						getFacturas()[num_factura].setTotal_factura(getFacturas()[num_factura].getTotal_factura()+ valor_compra);
+						
 					}
 				}
 			}
@@ -407,7 +416,7 @@ public class Tienda {
 	}
 	
 	
-	public int proceso_compra_bebidas(String bebida,int cantidad) {
+	public int proceso_compra_bebidas(String bebida,int cantidad,int num_objeto_vendido, int num_factura) {
 		int estado = 0;
 		for(int a = 0;a<almacen_bebidas.length;a++) {
 			if(bebida.equals(almacen_bebidas[a].getNombre())) {
@@ -420,6 +429,11 @@ public class Tienda {
 						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
 						estado = 2;
+						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setCantidad(cantidad);
+						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setNombre(bebida);
+						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setValor_venta(valor_compra);
+						getFacturas()[num_factura].setTotal_factura(getFacturas()[num_factura].getTotal_factura()+ valor_compra);
+						
 					}
 				}
 			}
@@ -710,6 +724,37 @@ public class Tienda {
 		return mensaje;
 	}
 	
+	public int guardar_serial_factura(int num_factura) {
+		int num = (int)(Math.random()*10);
+		getFacturas()[num_factura].setNumero_factura(num);
+		return num;
+	}
+	public String imprimir_factura(int num_factura) {
+		String vendidos = "";
+		for(int a = 0;a<getFacturas()[num_factura].getObjetos_vendidos().length;a++) {
+			if(!getFacturas()[num_factura].getObjetos_vendidos()[a].getNombre().equals("no")) {
+				vendidos = vendidos + "\n" + getFacturas()[num_factura].getObjetos_vendidos()[a].toString();
+			}
+		}
+		double impuesto = (getFacturas()[num_factura].getTotal_factura()*getFacturas()[num_factura].getImpuesto());
+		return "Serial de factura: " + getFacturas()[num_factura].getNumero_factura() +"\n" + vendidos + "\nTotal sin impuesto: " + getFacturas()[num_factura].getTotal_factura()
+				+ "\nImpuesto: " + impuesto  + "\nTotal Final: " + (impuesto + getFacturas()[num_factura].getTotal_factura()) ;
+	}
+	
+	public String historial_facturas() {
+		String mensaje = "";
+		if(getFacturas()[0].getNumero_factura()==-1) {
+			mensaje = "En esta sesion no se han generado facturas";
+		}
+		else {
+			for(int a = 0;a<getFacturas().length;a++) {
+				if(getFacturas()[a].getNumero_factura()!=-1) {
+					mensaje = mensaje+imprimir_factura(a)+"\n";
+				}
+			}
+		}
+		return mensaje;
+	}
 	
 }
 

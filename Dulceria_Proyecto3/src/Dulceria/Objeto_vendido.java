@@ -28,7 +28,7 @@ public class Objeto_vendido {
 	
 	
 	public Objeto_vendido() {
-		nombre = "";
+		nombre = "no";
 		cantidad = 0;
 		valor_venta = 0;
 	}
@@ -38,6 +38,13 @@ public class Objeto_vendido {
 		this.cantidad = cantidad;
 		this.valor_venta = valor_venta;
 	}
+	
+	@Override
+	public String toString() {
+		return "Objeto_vendido [nombre=" + nombre + ", cantidad=" + cantidad + ", valor_venta=" + valor_venta + "]";
+	}
+	
+	
 	
 	
 }

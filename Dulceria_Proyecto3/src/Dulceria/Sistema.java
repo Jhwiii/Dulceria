@@ -63,6 +63,7 @@ public class Sistema {
 			}
 			case 2:{
 				s.crear_usuario(tienda);
+				int num_factura = 0;
 				System.out.println("El cliente ha sido creado con los siguientes datos:\n" + tienda.getCliente().toString());
 				int option2 = 0;
 				while(option2!=8) {
@@ -82,24 +83,24 @@ public class Sistema {
 						break;
 					}
 					case 4:{
-						s.menu_compras(tienda,s);
+						s.menu_compras(tienda,s,num_factura);
+						num_factura = num_factura +1 ;
 						break;
 					}
 					case 5: {
+						System.out.println(tienda.historial_facturas()); 
 						break;
 					}
-					case 6: {
-						break;
-					}
-					case 7:{
+					case 6:{
 						System.out.println(tienda.ver_calificaciones());
 						break;
 					}
-					case 8:{
+					case 7:{
 						s.ayuda(tienda);
 						break; 
 					 }
-					case 9:{
+					case 8:{
+						option1 = 3;
 						System.out.println("Gracias por visitar nuestra dulceria, antes de abandonarla ayudanos con una encuesta de satisfaccion para mejorar la experiencia");
 						s.encuesta(tienda);
 						break;
@@ -148,13 +149,18 @@ public class Sistema {
 	}
 
 	
-	public void menu_compras(Tienda tienda, Sistema s) {
+	
+	public void menu_compras(Tienda tienda, Sistema s, int num_factura) {
+		
 		Scanner sc = new Scanner(System.in);
 		Scanner ac = new Scanner(System.in);
+		tienda.guardar_serial_factura(num_factura);
+		int num_objeto_vendido = 0;
 		int option3 = 0;
-		while(option3 !=5) {
+		System.out.println("Solo se puede hacer la compra de 5 productos por factura");
+		while(option3 !=4&&num_objeto_vendido<2) {
 			System.out.println("LOS OBJETOS DISPONIBLES PARA LA VENTA SON, ELIGA UNO:"
-					+ "\n1.Dulces Por Unidad \n2.Dulces Por Paquete \n3.Bebidas \n4.Imprimir factura \n5.Salir de menu de compras");
+					+ "\n1.Dulces Por Unidad \n2.Dulces Por Paquete \n3.Bebidas \n4.Salir de menu de compras");
 			option3 = sc.nextInt();
 			switch(option3) {
 			case 1:{
@@ -165,14 +171,14 @@ public class Sistema {
 				if(dulce.equals("Feligoma")) {
 					if(tienda.mayor_edad()==true) {
 						System.out.println("Si cuenta con la edad para comprar esta gomita");
-						s.compra_de_dulces(tienda, dulce);//se crea la venta de los dulces por unidad como un metodo para cuando se necesite hacer la verificacion de mayoria de edad de la gomita alcoholica
+						num_objeto_vendido = s.compra_de_dulces(tienda, dulce, num_objeto_vendido, num_factura);//se crea la venta de los dulces por unidad como un metodo para cuando se necesite hacer la verificacion de mayoria de edad de la gomita alcoholica
 					}
 					else {
 						System.out.println("No tienes la edad para venderte este dulce, no eres mayor de edad");
 					}
 				}
 				else {
-					s.compra_de_dulces(tienda, dulce);
+					num_objeto_vendido = s.compra_de_dulces(tienda, dulce,num_objeto_vendido, num_factura);
 				}
 				break;
 			}
@@ -184,10 +190,9 @@ public class Sistema {
 				if(tienda.disponibilidad_paquetes(paquete)==true) {
 					System.out.println("Escriba la cantidad de paquetes de " + paquete + " que desea comprar");
 					int cantidad = sc.nextInt();
-					tienda.getFacturas()[0].setNumero_factura(1);
-					tienda.getFacturas()[0].setImpuesto(19);
-					int estado_compra = tienda.proceso_compra_paquetes(paquete, cantidad,tienda.getFacturas());
-					tienda.getFacturas()[0].setTotal_factura(tienda.getFacturas()[0].getObjetos_vendidos()[0].getValor_venta()*tienda.getFacturas()[0].getImpuesto());
+					
+					int estado_compra = tienda.proceso_compra_paquetes(paquete, cantidad,num_objeto_vendido,num_factura);
+					
 					if(estado_compra == 0){
 						System.out.println("No se cuenta en el inventario con la cantidad de paquetes necesitados, por lo que no se puede completar la venta");
 					}
@@ -195,8 +200,8 @@ public class Sistema {
 						System.out.println("El presupuesto no es suficiente para la compra");
 					}
 					else {
-						System.out.println("numero" + tienda.getFacturas()[0].getNumero_factura()+"\n");
 						System.out.println("Compra realizada");
+						num_objeto_vendido = num_objeto_vendido +1; 					
 					}
 				}
 				else {
@@ -212,7 +217,7 @@ public class Sistema {
 				if(tienda.disponibilidad_bebidas(bebida)==true) {
 					System.out.println("Escriba la cantidad de bebidas de " + bebida+ " que desea comprar");
 					int cantidad = sc.nextInt();
-					int estado_compra = tienda.proceso_compra_bebidas(bebida, cantidad);
+					int estado_compra = tienda.proceso_compra_bebidas(bebida, cantidad,num_objeto_vendido, num_factura);
 					if(estado_compra == 0) {
 						System.out.println("No se cuenta en el inventario con la cantidad de paquetes necesitados, por lo que no se puede completar la venta");
 					}
@@ -221,6 +226,8 @@ public class Sistema {
 					}
 					else {
 						System.out.println("Compra realizada");
+						num_objeto_vendido = num_objeto_vendido +1; 
+						
 					}
 				}
 				else {
@@ -230,15 +237,16 @@ public class Sistema {
 			}
 			}
 		}
+		System.out.println(tienda.imprimir_factura(num_factura));
 	}
 	
 	
-	public void compra_de_dulces(Tienda tienda, String dulce) {
+	public int compra_de_dulces(Tienda tienda, String dulce, int num_objeto_vendido, int num_factura) {
 		Scanner sc = new Scanner(System.in);
 		if(tienda.disponibilidad_dulces(dulce) == true) {
 			System.out.println("Escriba la cantidad de unidades de "+ dulce +" que desea comprar");
 			int cantidad = sc.nextInt();
-			int estado_compra = tienda.proceso_compra_dulces(cantidad, dulce);
+			int estado_compra = tienda.proceso_compra_dulces(cantidad, dulce,num_objeto_vendido,num_factura);
 			if(estado_compra==0) {
 				System.out.println("No se cuenta en el inventario con la cantidad de dulces necesitados, por lo que no se puede completar la venta");
 			}
@@ -247,12 +255,14 @@ public class Sistema {
 			}
 			else {
 				System.out.println("Compra realizada");
+				num_objeto_vendido = num_objeto_vendido +1;
+				
 			}
 		}
 		else {
 			System.out.println("El dulce " + dulce + " no se encuentra en el inventario");
 		}
-
+		return num_objeto_vendido;
 	}
 	
 	public void menu_cliente() {
@@ -262,10 +272,9 @@ public class Sistema {
 				+ "\n3.Bebidas disponibles"
 				+ "\n4.Realizar compra"
 				+ "\n5.Ver historial de compras"
-				+ "\n6.Imprimir factura de compra"
-				+ "\n7.Ver reseñas"
-				+ "\n8.Ayuda"
-				+ "\n9.Salir");
+				+ "\n6.Ver reseñas"
+				+ "\n7.Ayuda"
+				+ "\n8.Salir");
 	}
 	
 	public void crear_usuario(Tienda tienda) {
