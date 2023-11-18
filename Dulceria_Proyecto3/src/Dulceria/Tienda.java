@@ -24,9 +24,7 @@ public class Tienda {
 	private int dinero_ventas; 
 	private int ganancia;
 	
-	
-<<<<<<< HEAD
-=======
+
 
 	public int getDinero_invertido() {
 		return dinero_invertido;
@@ -76,7 +74,7 @@ public class Tienda {
 	public void setTotal_ventabebida(int total_ventabebida) {
 		this.total_ventabebida = total_ventabebida;
 	}
->>>>>>> branch 'main' of https://github.com/Jhwiii/Dulceria.git
+
 	public int getTotal_compradulce() {
 		return total_compradulce;
 	}
