@@ -62,6 +62,7 @@ public class Sistema {
 				 break;
 			}
 			case 2:{
+				System.out.println(tienda.getFacturas()[0].getNumero_factura());
 				s.crear_usuario(tienda);
 				System.out.println("El cliente ha sido creado con los siguientes datos:\n" + tienda.getCliente().toString());
 				int option2 = 0;
@@ -184,10 +185,9 @@ public class Sistema {
 				if(tienda.disponibilidad_paquetes(paquete)==true) {
 					System.out.println("Escriba la cantidad de paquetes de " + paquete + " que desea comprar");
 					int cantidad = sc.nextInt();
-					tienda.getFacturas()[0].setNumero_factura(1);
-					tienda.getFacturas()[0].setImpuesto(19);
+					
 					int estado_compra = tienda.proceso_compra_paquetes(paquete, cantidad,tienda.getFacturas());
-					tienda.getFacturas()[0].setTotal_factura(tienda.getFacturas()[0].getObjetos_vendidos()[0].getValor_venta()*tienda.getFacturas()[0].getImpuesto());
+					
 					if(estado_compra == 0){
 						System.out.println("No se cuenta en el inventario con la cantidad de paquetes necesitados, por lo que no se puede completar la venta");
 					}
@@ -195,8 +195,12 @@ public class Sistema {
 						System.out.println("El presupuesto no es suficiente para la compra");
 					}
 					else {
-						System.out.println("numero" + tienda.getFacturas()[0].getNumero_factura()+"\n");
-						System.out.println("Compra realizada");
+						System.out.println("Compra realizada"+tienda.getFacturas()[0].toString());
+						tienda.getFacturas()[0].setNumero_factura(1);
+						tienda.getFacturas()[0].setImpuesto(19);
+						System.out.println("numero " + tienda.getFacturas()[0].getNumero_factura()+"\nDAtos "+tienda.getFacturas()[0].getObjetos_vendidos()[0].toString()+"\ntotal" + tienda.getFacturas()[0].getTotal_factura());
+						tienda.getFacturas()[0].setTotal_factura(tienda.getFacturas()[0].getObjetos_vendidos()[0].getValor_venta()*tienda.getFacturas()[0].getImpuesto());
+						
 					}
 				}
 				else {

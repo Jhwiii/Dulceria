@@ -18,10 +18,6 @@ public class Tienda {
 	
 	
 	
-
-	
-	
-	
 	public int getTotal_compradulce() {
 		return total_compradulce;
 	}
@@ -109,6 +105,7 @@ public class Tienda {
 		this.cliente = cliente;
 	}
 	
+	
 	public Factura[] getFacturas() {
 		return facturas;
 	}
@@ -139,11 +136,12 @@ public class Tienda {
 		}
 		
 		facturas = new Factura[5];
-		for(int i = 0;9<facturas.length;i++) {
+		for(int i = 0;i<facturas.length;i++) {
 			facturas[i] = new Factura();
 		}
 	}
 	
+	Objeto_vendido c1 = new Objeto_vendido();
 	
 	
 	public Tienda(String nombre,String direccion, String correo, int telefono) {
@@ -180,7 +178,7 @@ public class Tienda {
 		calificaciones();
 		
 		facturas = new Factura[5];
-		for(int i = 0;9<facturas.length;i++) {
+		for(int i = 0;i<facturas.length;i++) {
 			facturas[i] = new Factura();
 		}
 	}
@@ -333,9 +331,11 @@ public class Tienda {
 						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
 						estado = 2;
-						facturas[a].getObjetos_vendidos()[a].setNombre(paquete);
-						facturas[a].getObjetos_vendidos()[a].setCantidad(cantidad);
-						facturas[a].getObjetos_vendidos()[a].setValor_venta(valor_compra);
+						/*c1.setCantidad(cantidad);
+						c1.setNombre(paquete);
+						c1.setValor_venta(valor_compra);
+						
+						getFacturas()[0].getObjetos_vendidos()[0].setCantidad(c1.getCantidad());*/
 					}
 				}
 			}

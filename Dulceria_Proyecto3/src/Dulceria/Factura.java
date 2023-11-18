@@ -11,6 +11,7 @@ public class Factura {
 	
 	
 	
+	
 	public int getNumero_factura() {
 		return numero_factura;
 	}
