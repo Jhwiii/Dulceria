@@ -28,7 +28,7 @@ public class Objeto_vendido {
 	
 	
 	public Objeto_vendido() {
-		nombre = "papa";
+		nombre = "no";
 		cantidad = 0;
 		valor_venta = 0;
 	}

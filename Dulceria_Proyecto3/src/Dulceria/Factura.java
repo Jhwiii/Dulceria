@@ -41,14 +41,14 @@ public class Factura {
 	}
 	
 	public Factura() {
-		numero_factura = 0;
+		numero_factura = -1;
 	
 		objetos_vendidos = new Objeto_vendido[5];
 		for(int a = 0;a<objetos_vendidos.length;a++) {
 			objetos_vendidos[a] = new Objeto_vendido();
 		}
 		
-		impuesto = 0;
+		impuesto = 0.19;
 		total_factura = 0;
 	}
 	
