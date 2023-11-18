@@ -15,9 +15,68 @@ public class Tienda {
 	private Cliente cliente;
 	private int total_compradulce; 
 	private Factura facturas[];
+	private int total_comprapaquete; 
+	private int total_comprabebida; 
+	private int total_ventadulce; 
+	private int total_ventapaquete; 
+	private int total_ventabebida; 
+	private int dinero_invertido; 
+	private int dinero_ventas; 
+	private int ganancia;
 	
 	
-	
+<<<<<<< HEAD
+=======
+
+	public int getDinero_invertido() {
+		return dinero_invertido;
+	}
+	public void setDinero_invertido(int dinero_invertido) {
+		this.dinero_invertido = dinero_invertido;
+	}
+	public int getDinero_ventas() {
+		return dinero_ventas;
+	}
+	public void setDinero_ventas(int dinero_ventas) {
+		this.dinero_ventas = dinero_ventas;
+	}
+	public int getGanancia() {
+		return ganancia;
+	}
+	public void setGanancia(int ganancia) {
+		this.ganancia = ganancia;
+	}
+	public int getTotal_comprapaquete() {
+		return total_comprapaquete;
+	}
+	public void setTotal_comprapaquete(int total_comprapaquete) {
+		this.total_comprapaquete = total_comprapaquete;
+	}
+	public int getTotal_comprabebida() {
+		return total_comprabebida;
+	}
+	public void setTotal_comprabebida(int total_comprabebida) {
+		this.total_comprabebida = total_comprabebida;
+	}
+	public int getTotal_ventadulce() {
+		return total_ventadulce;
+	}
+	public void setTotal_ventadulce(int total_ventadulce) {
+		this.total_ventadulce = total_ventadulce;
+	}
+	public int getTotal_ventapaquete() {
+		return total_ventapaquete;
+	}
+	public void setTotal_ventapaquete(int total_ventapaquete) {
+		this.total_ventapaquete = total_ventapaquete;
+	}
+	public int getTotal_ventabebida() {
+		return total_ventabebida;
+	}
+	public void setTotal_ventabebida(int total_ventabebida) {
+		this.total_ventabebida = total_ventabebida;
+	}
+>>>>>>> branch 'main' of https://github.com/Jhwiii/Dulceria.git
 	public int getTotal_compradulce() {
 		return total_compradulce;
 	}
@@ -402,41 +461,47 @@ public class Tienda {
 			return total_compradul; 
 		}
 	}
-	public void total_comprabebida(Finanza f) {
-		
-		int  totalventa_bebida = 0; 
-		int totalcompra_bebida = 0; 
-		
-		for (int i = 0; i < almacen_bebidas.length; i ++ ) {
+	public int total_comprabebida( int i, int total_comprabebi) {
+	
+		if (i < almacen_bebidas.length) {
 			
-			int venta_bebida= almacen_bebidas[i].getPrecio_venta()* almacen_bebidas[i].getCantidad_bebidas();
-			int compra_bebida = almacen_bebidas[i].getPrecio_compra()* almacen_bebidas[i].getCantidad_bebidas();
+			total_comprabebi = almacen_bebidas[i].getPrecio_venta()* almacen_bebidas[i].getCantidad_bebidas(); 
+			i++; 
 			
-			totalventa_bebida += venta_bebida; 
-			totalcompra_bebida += compra_bebida; 
-		 }
-		f.setVenta_bebida(totalventa_bebida);
-		f.setCompra_bebida(totalcompra_bebida);
+			total_comprabebi = total_comprabebida(i, total_comprabebi); 
+			
+			total_comprabebida += total_comprabebi; 
+			
+			return total_comprabebida; 	
+		
+		} else {
+			
+			return total_comprabebi; 
+		}
+		
 	}
 	
-	public void total_comprapaq(Finanza f) {
-		int  totalventa_paquete = 0; 
-		int totalcompra_paquete = 0; 
-		
-		for (int i = 0; i < almacen_paquetes.length; i ++ ) {
-			
-			int venta_paquete = almacen_paquetes[i].getPrecio_venta()* almacen_paquetes[i].getCantidad(); 
-			int compra_paquete = (int) (almacen_paquetes[i].getPrecio_compra()* almacen_paquetes[i].getCantidad()); 
-			
-			totalventa_paquete += venta_paquete; 
-			totalcompra_paquete += compra_paquete; 
-			
-		}
-		f.setVenta_paquete(totalventa_paquete);
-		f.setCompra_paquete(totalcompra_paquete);
-	}
+	public int total_comprapaq(int i, int total_comprapaq ) {
 	
 
+		if (i < almacen_paquetes.length) {
+			
+			total_comprapaq = almacen_paquetes[i].getPrecio_venta()* almacen_paquetes[i].getCantidad_paquetes(); 
+			i++; 
+			
+			total_comprapaq = total_comprapaq(i, total_comprapaq); 
+			
+			total_comprapaquete += total_comprapaq; 
+			
+			return total_comprapaquete; 	
+		
+		} else {
+			
+			return total_comprapaq; 
+		}
+		
+
+	}
 	
 	public String editar_dulce(String buscar_dulce,String nombre, String tipo, String descripcion, int valor_compra, int valor_venta, int cantidad) {
 		String dulce_editado = "";
