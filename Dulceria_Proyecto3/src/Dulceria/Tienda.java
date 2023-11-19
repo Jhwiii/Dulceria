@@ -432,7 +432,7 @@ public class Tienda {
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setCantidad(cantidad);
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setNombre(bebida);
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setValor_venta(valor_compra);
-						getFacturas()[num_factura].setTotal_factura(getFacturas()[num_factura].getTotal_factura()+ valor_compra);
+						getFacturas()[num_factura].setTotal_factura(valor_compra);
 						
 					}
 				}
@@ -656,6 +656,23 @@ public class Tienda {
 		getFacturas()[num_factura].setNumero_factura(num);
 		return num;
 	}
+	
+	public String crear_factura(int num_factura,boolean descuento) {
+		System.out.println("ahhahdfsfasd"+ descuento);
+		
+		String vendidos = "";
+		double impuesto = 0;
+		if(descuento == true){
+			System.out.println("Entro descuento");
+			getFacturas()[num_factura].setImpuesto(impuesto);
+		}
+		else{
+			System.out.println("no entro descuento");
+			getFacturas()[num_factura].setImpuesto(getFacturas()[num_factura].getTotal_factura()*0.19);
+		}
+		return "FACTURA CREADA";
+	}
+	
 	public String imprimir_factura(int num_factura) {
 		String vendidos = "";
 		for(int a = 0;a<getFacturas()[num_factura].getObjetos_vendidos().length;a++) {
@@ -663,9 +680,9 @@ public class Tienda {
 				vendidos = vendidos + "\n" + getFacturas()[num_factura].getObjetos_vendidos()[a].toString();
 			}
 		}
-		double impuesto = (getFacturas()[num_factura].getTotal_factura()*getFacturas()[num_factura].getImpuesto());
 		return "Serial de factura: " + getFacturas()[num_factura].getNumero_factura() +"\n" + vendidos + "\nTotal sin impuesto: " + getFacturas()[num_factura].getTotal_factura()
-				+ "\nImpuesto: " + impuesto  + "\nTotal Final: " + (impuesto + getFacturas()[num_factura].getTotal_factura()) ;
+				+ "\nImpuesto: " + getFacturas()[num_factura].getImpuesto()  + "\nTotal Final: " + ( getFacturas()[num_factura].getImpuesto() + getFacturas()[num_factura].getTotal_factura()) ;
+		
 	}
 	
 	public String historial_facturas() {
@@ -682,6 +699,8 @@ public class Tienda {
 		}
 		return mensaje;
 	}
+	
+
 	
 }
 

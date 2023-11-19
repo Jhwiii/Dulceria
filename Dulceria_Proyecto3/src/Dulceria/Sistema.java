@@ -18,7 +18,9 @@ public class Sistema {
 		
 		int option1 = 0;
 		while(option1!=3) {
-			System.out.println("TIPO DE ACCESO---1.Encargado--2.Cliente--3.Salir de la Dulceria");
+			System.out.println("*****************************************************************");
+			System.out.println("*TIPO DE ACCESO---1.Encargado--2.Cliente--3.Salir de la Dulceria*");
+			System.out.println("*****************************************************************");
 			option1 = sc.nextInt();
 			switch(option1) {
 			case 1:{
@@ -28,8 +30,13 @@ public class Sistema {
 			
 			 int option5 = 0;
 					 while(option5!=4) {
-						 System.out.println("LAS OPCIONES DISPONIBLES EN EL MENU DE ENCARGADO, SON: "
-									+ "\n1.Editar productos de la tienda\n2.Editar propiedades de la tienda\n3.Opciones de contabilidad\n4.Salir");
+						 System.out.println("**********************************************************");
+						 System.out.println("* LAS OPCIONES DISPONIBLES EN EL MENU DE ENCARGADO, SON: *"
+									+ "\n* 1.Editar productos de la tienda                        *"
+									+ "\n* 2.Editar propiedades de la tienda                      *"
+									+ "\n* 3.Opciones de contabilidad                             *"
+									+ "\n* 4.Salir                                                *");
+						 System.out.println("**********************************************************");
 						 option5 = sc.nextInt();
 						 switch(option5) {
 						 case 1:{
@@ -237,6 +244,33 @@ public class Sistema {
 			}
 			}
 		}
+		int adivinar = (int)(Math.random()*15);
+		System.out.println("Se ha generado un numero aleatorio entre 0 y 15, para acceder al descuento del impuesto debe adivinarlo. cuenta con 3 intentos");
+		int contador = 0;
+		boolean descuento = false;
+		int num = 0;
+		while(contador<3) {
+			System.out.println(adivinar);
+			do {
+				System.out.println("Intento" + (contador+1));
+				num = sc.nextInt();
+			}while(num<0||num>15);
+			if(num == adivinar) {
+				System.out.println("Felicidades has adivinado el numero, el impuesto no sera cobrado");
+				descuento = true;
+				contador = 3;
+			}
+			else {
+				if(num<adivinar) {
+					System.out.println("El numero a adivinar es mayor");
+				}
+				else {
+					System.out.println("El numero a adivinar es menor");
+				}
+				contador += 1;
+			}
+		}
+		System.out.println(tienda.crear_factura(num_factura, descuento));
 		System.out.println(tienda.imprimir_factura(num_factura));
 	}
 	
@@ -606,12 +640,7 @@ public class Sistema {
 			}
 		}
 		
-	}
-	
-	
-	
-	
-	
+	}	
 	
 	
 	
