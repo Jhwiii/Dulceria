@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 
 public class Sistema {
+	
+	
 
 	public static void main(String[] args) {
 		   
@@ -15,7 +17,6 @@ public class Sistema {
 		Tienda tienda = new Tienda("Ciocolatto ","Cra 4 # 8-71", "Ciocolatto@gmail.com", 320456788);
 		
 		//System.out.println(Arrays.toString(tienda.getAlmacen_dulces()));
-		
 		int option1 = 0;
 		while(option1!=3) {
 			System.out.println("*****************************************************************");
@@ -99,7 +100,7 @@ public class Sistema {
 						break;
 					}
 					case 6:{
-						System.out.println(tienda.ver_calificaciones());
+						System.out.println(tienda.reseñas());
 						break;
 					}
 					case 7:{
@@ -133,6 +134,7 @@ public class Sistema {
 		
 		
 	}
+	
 	
 	public void encuesta(Tienda tienda) {
 		Scanner sc = new Scanner(System.in);
@@ -250,7 +252,7 @@ public class Sistema {
 		boolean descuento = false;
 		int num = 0;
 		while(contador<3) {
-			System.out.println(adivinar);
+			System.out.println(adivinar);//borrar
 			do {
 				System.out.println("Intento" + (contador+1));
 				num = sc.nextInt();
@@ -300,15 +302,17 @@ public class Sistema {
 	}
 	
 	public void menu_cliente() {
-		System.out.println("LAS OPCIONES DISPONIBLES EN NUESTRO MENU, SON:"
-				+ "\n1.Gomitas por Unidad disponibles"
-				+ "\n2.Paquetes de Gomitas disponibles"
-				+ "\n3.Bebidas disponibles"
-				+ "\n4.Realizar compra"
-				+ "\n5.Ver historial de compras"
-				+ "\n6.Ver reseñas"
-				+ "\n7.Ayuda"
-				+ "\n8.Salir");
+		System.out.println("**************************************************");
+		System.out.println("* LAS OPCIONES DISPONIBLES EN NUESTRO MENU, SON: *"
+				+ "\n* 1.Gomitas por Unidad disponibles               *"
+				+ "\n* 2.Paquetes de Gomitas disponibles              *"
+				+ "\n* 3.Bebidas disponibles                          *"
+				+ "\n* 4.Realizar compra                              *"
+				+ "\n* 5.Ver historial de compras                     *"
+				+ "\n* 6.Ver reseñas                                  *"
+				+ "\n* 7.Ayuda                                        *"
+				+ "\n* 8.Salir                                        *");
+		System.out.println("**************************************************");
 	}
 	
 	public void crear_usuario(Tienda tienda) {

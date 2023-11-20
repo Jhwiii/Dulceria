@@ -352,7 +352,7 @@ public class Tienda {
 					if(valor_compra<cliente.getPresupuesto()) {
 						int nueva_cantidad_dulces = getAlmacen_dulces()[a].getCantidad_dulces()-cantidad;
 						getAlmacen_dulces()[a].setCantidad_dulces(nueva_cantidad_dulces);
-						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
+						double nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
 						estado = 2;//si retorna 2 la compra fue he hecha con exito
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setCantidad(cantidad);
@@ -389,7 +389,7 @@ public class Tienda {
 					if(valor_compra<cliente.getPresupuesto()) {
 						int nueva_cantidad_paquetes = getAlmacen_paquetes()[a].getCantidad_paquetes()-cantidad;
 						getAlmacen_paquetes()[a].setCantidad_paquetes(nueva_cantidad_paquetes);
-						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
+						double nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
 						estado = 2;
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setCantidad(cantidad);
@@ -426,7 +426,7 @@ public class Tienda {
 					if(valor_compra<cliente.getPresupuesto()) {
 						int nueva_cantidad_paquetes = getAlmacen_bebidas()[a].getCantidad_bebidas()-cantidad;
 						getAlmacen_bebidas()[a].setCantidad_bebidas(nueva_cantidad_paquetes);
-						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
+						double nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
 						estado = 2;
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setCantidad(cantidad);
@@ -731,17 +731,15 @@ public class Tienda {
 	}
 	
 	public String crear_factura(int num_factura,boolean descuento) {
-		System.out.println("ahhahdfsfasd"+ descuento);
-		
 		String vendidos = "";
 		double impuesto = 0;
 		if(descuento == true){
-			System.out.println("Entro descuento");
 			getFacturas()[num_factura].setImpuesto(impuesto);
 		}
 		else{
-			System.out.println("no entro descuento");
 			getFacturas()[num_factura].setImpuesto(getFacturas()[num_factura].getTotal_factura()*0.19);
+			double nuevo_presupuesto = cliente.getPresupuesto()-getFacturas()[num_factura].getImpuesto();
+			cliente.setPresupuesto(nuevo_presupuesto);
 		}
 		return "FACTURA CREADA";
 	}
@@ -773,6 +771,23 @@ public class Tienda {
 		return mensaje;
 	}
 	
+	public  String reseñas() {
+		
+		String reseñas = "";
+		String estrellas = "";
+		for(int a = 0;a<calificaciones.length;a++) {
+			int cont = 0;
+			if(!getCalificaciones()[a].getComentario().equals("no")) {
+				estrellas = "";
+				while(cont<getCalificaciones()[a].getNumero()) {
+					estrellas = estrellas + "®";
+					cont++;
+				}
+				reseñas = reseñas+ "\nReseña "+ (a+1)+ " [" +getCalificaciones()[a].getComentario()+"] "+ estrellas;
+			}
+		}
+		return reseñas;
+	}
 
 	
 }
