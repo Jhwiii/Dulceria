@@ -252,7 +252,7 @@ public class Sistema {
 		boolean descuento = false;
 		int num = 0;
 		while(contador<3) {
-			System.out.println(adivinar);
+			System.out.println(adivinar);//borrar
 			do {
 				System.out.println("Intento" + (contador+1));
 				num = sc.nextInt();
