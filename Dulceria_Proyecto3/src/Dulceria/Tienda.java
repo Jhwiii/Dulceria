@@ -352,7 +352,7 @@ public class Tienda {
 					if(valor_compra<cliente.getPresupuesto()) {
 						int nueva_cantidad_dulces = getAlmacen_dulces()[a].getCantidad_dulces()-cantidad;
 						getAlmacen_dulces()[a].setCantidad_dulces(nueva_cantidad_dulces);
-						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
+						double nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
 						estado = 2;//si retorna 2 la compra fue he hecha con exito
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setCantidad(cantidad);
@@ -389,7 +389,7 @@ public class Tienda {
 					if(valor_compra<cliente.getPresupuesto()) {
 						int nueva_cantidad_paquetes = getAlmacen_paquetes()[a].getCantidad_paquetes()-cantidad;
 						getAlmacen_paquetes()[a].setCantidad_paquetes(nueva_cantidad_paquetes);
-						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
+						double nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
 						estado = 2;
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setCantidad(cantidad);
@@ -426,7 +426,7 @@ public class Tienda {
 					if(valor_compra<cliente.getPresupuesto()) {
 						int nueva_cantidad_paquetes = getAlmacen_bebidas()[a].getCantidad_bebidas()-cantidad;
 						getAlmacen_bebidas()[a].setCantidad_bebidas(nueva_cantidad_paquetes);
-						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
+						double nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
 						estado = 2;
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setCantidad(cantidad);
