@@ -19,9 +19,9 @@ public class Sistema {
 		//System.out.println(Arrays.toString(tienda.getAlmacen_dulces()));
 		int option1 = 0;
 		while(option1!=3) {
-			System.out.println("*****************************************************************");
-			System.out.println("*TIPO DE ACCESO---1.Encargado--2.Cliente--3.Salir de la Dulceria*");
-			System.out.println("*****************************************************************");
+			System.out.println("*********************************************************************");
+			System.out.println("* TIPO DE ACCESO * 1.Encargado * 2.Cliente * 3.Salir de la Dulceria *");
+			System.out.println("*********************************************************************");
 			option1 = sc.nextInt();
 			switch(option1) {
 			case 1:{
@@ -167,12 +167,13 @@ public class Sistema {
 		int num_objeto_vendido = 0;
 		int option3 = 0;
 		System.out.println("Solo se puede hacer la compra de 5 productos por factura");
-		while(option3 !=4&&num_objeto_vendido<2) {
+		while(option3 !=4&&num_objeto_vendido<4) {
 			System.out.println("LOS OBJETOS DISPONIBLES PARA LA VENTA SON, ELIGA UNO:"
 					+ "\n1.Dulces Por Unidad \n2.Dulces Por Paquete \n3.Bebidas \n4.Salir de menu de compras");
 			option3 = sc.nextInt();
 			switch(option3) {
 			case 1:{
+				System.out.println(tienda.presupesto_disponible());
 				System.out.println("Los dulces disponibles son:" + Arrays.toString(tienda.getAlmacen_dulces()));
 				System.out.println("ESCRIBA EL NOMBRE DEL DULCE QUE DESEA COMPRAR");
 				String dulce = ac.nextLine();
@@ -192,6 +193,7 @@ public class Sistema {
 				break;
 			}
 			case 2 :{
+				System.out.println(tienda.presupesto_disponible());
 				System.out.println("Los paquetes de dulces disponibles son: \n"+Arrays.toString(tienda.getAlmacen_paquetes()));
 				System.out.println("ESCRIBA EL NOMBRE DEL PAQUETE DE DULCES QUE DESEA COMPRAR");
 				String paquete = ac.nextLine();
@@ -219,6 +221,7 @@ public class Sistema {
 				break;
 			}
 			case 3:{
+				System.out.println(tienda.presupesto_disponible());
 				System.out.println("Las bebidas disponibles son:\n " + Arrays.toString(tienda.getAlmacen_bebidas()));
 				System.out.println("ESCRIBA EL NOMBRE DE LA BEBIDA QUE DESEA COMPRAR");
 				String bebida = ac.nextLine();
@@ -483,12 +486,17 @@ public class Sistema {
 		Scanner sc = new Scanner(System.in);
 		int option4 = 0;
 		while(option4!=4){
-			System.out.println("Este es el menu para editar productos de la tienda, eliga que opcion desea editar"
-					+ "\n1.Editar dulces por unidad\n2.Editar dulces por paquete\n3.Editar bebidas\n4.Salir");
+			System.out.println("***************************************************");
+			System.out.println("* Menu para editar tienda, eliga que opcion desea *"
+					+ "\n* 1.Editar dulces por unidad                      *"
+					+ "\n* 2.Editar dulces por paquete                     *"
+					+ "\n* 3.Editar bebidas                                *"
+					+ "\n* 4.Salir                                         *");
+			System.out.println("***************************************************");
 			option4 = sc.nextInt();
 			switch(option4) {
 			case 1:{
-				System.out.println("Escriba el nombre del dulce que desea editar ("+tienda.nombres_dulces(0,"")+")");
+				System.out.println("Escriba el nombre del dulce que desea editar \n("+tienda.nombres_dulces(0,"")+")");
 				String dulce = sc.next();
 				dulce = s.ordenar_letras(dulce);
 				if(tienda.disponibilidad_dulces(dulce)==true) {
@@ -603,7 +611,18 @@ public class Sistema {
 		Scanner sc = new Scanner(System.in);
 		int option6 = 0;
 		while(option6 !=5) {
+<<<<<<< HEAD
 			System.out.println("Elija el numero de la opcion a editar:\n1.Cambiar usuario\n2.Cambiar contraseña\n3.Editar nombre de tienda\n4.Editar dirrecion\n5.Salir");
+=======
+			System.out.println("*****************************************");
+			System.out.println("* Eliga el numero de la opcion a editar *"
+					+ "\n* 1.Cambiar usuario                     *"
+					+ "\n* 2.Cambiar contraseña                  *"
+					+ "\n* 3.Editar nombre de tienda             *"
+					+ "\n* 4.Editar dirrecion                    *"
+					+ "\n* 5.Salir                               *");
+			System.out.println("*****************************************");
+>>>>>>> branch 'main' of https://github.com/Jhwiii/Dulceria.git
 			option6 = sc.nextInt();
 			switch(option6){
 			case 1:{

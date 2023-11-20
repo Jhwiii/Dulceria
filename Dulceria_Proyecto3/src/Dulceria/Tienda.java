@@ -774,6 +774,11 @@ public class Tienda {
 	}
 	
 
+	public String presupesto_disponible() {
+		return "El presupuesto disponible es de: " + cliente.getPresupuesto();
+	}
+	
+	
 	
 }
 
