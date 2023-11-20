@@ -255,16 +255,16 @@ public class Tienda {
 	}
 	
 	public void crear_dulce_unidad() {
-		almacen_dulces[0] = new Dulce_Unidad("Gusanitos","Gomita","Pequena goma azucarada de colores con azucar",200,400,(int)(Math.random()*110));
-		almacen_dulces[1] = new Dulce_Unidad("Jet","Chocolate","Chocolatina tradicional Colombiana con leche",500,800,(int)(Math.random()*200));
-		almacen_dulces[2] = new Dulce_Unidad("Supercoco","Caramelo","Bombon con trozos de coco 100% natural",200,300,(int)(Math.random()*200));
-		almacen_dulces[3] = new Dulce_Unidad("Chupetin","Caramelo","Caramelo duro, con variedad de sabores",700,1000,(int)(Math.random()*10));
-		almacen_dulces[4] = new Dulce_Unidad("Malvisco","Gomita","Es una gomita de colores masticable suave",400,700,(int)(Math.random()*500));
-		almacen_dulces[5] = new Dulce_Unidad("Chocoramo","Torta","Bizcocho de vainilla cubierto de chocolate",2000,3500,(int)(Math.random()*230));
-		almacen_dulces[6] = new Dulce_Unidad("Barrilete","Caramelo","Caramelo masticable de colores",600,1000,(int)(Math.random()*145));
-		almacen_dulces[7] = new Dulce_Unidad("Cintas","Gomita","Gomitas arcoiris azucaradas",600,1000,(int)(Math.random()*50));
-		almacen_dulces[8] = new Dulce_Unidad("Burbuja jet","Chocolate","Esfera de Chocolate con relleno",600,1000,(int)(Math.random()*324));
-		almacen_dulces[9] = new Dulce_Unidad("Feligoma","Gomita","Goma artesanal hecha con alcohol",1000,2500,(int)(Math.random()*75));	
+		almacen_dulces[0] = new Dulce_Unidad("Gusanitos","Gomita","Pequena goma azucarada de colores con azucar",200,400,(int)(Math.random()*1));
+		almacen_dulces[1] = new Dulce_Unidad("Jet","Chocolate","Chocolatina tradicional Colombiana con leche",500,800,(int)(Math.random()*1));
+		almacen_dulces[2] = new Dulce_Unidad("Supercoco","Caramelo","Bombon con trozos de coco 100% natural",200,300,(int)(Math.random()*1));
+		almacen_dulces[3] = new Dulce_Unidad("Chupetin","Caramelo","Caramelo duro, con variedad de sabores",700,1000,(int)(Math.random()*1));
+		almacen_dulces[4] = new Dulce_Unidad("Malvisco","Gomita","Es una gomita de colores masticable suave",400,700,(int)(Math.random()*1));
+		almacen_dulces[5] = new Dulce_Unidad("Chocoramo","Torta","Bizcocho de vainilla cubierto de chocolate",2000,3500,(int)(Math.random()*1));
+		almacen_dulces[6] = new Dulce_Unidad("Barrilete","Caramelo","Caramelo masticable de colores",600,1000,(int)(Math.random()*1));
+		almacen_dulces[7] = new Dulce_Unidad("Cintas","Gomita","Gomitas arcoiris azucaradas",600,1000,(int)(Math.random()*1));
+		almacen_dulces[8] = new Dulce_Unidad("Burbuja jet","Chocolate","Esfera de Chocolate con relleno",600,1000,(int)(Math.random()*1));
+		almacen_dulces[9] = new Dulce_Unidad("Feligoma","Gomita","Goma artesanal hecha con alcohol",1000,2500,(int)(Math.random()*1));	
 	}
 	
 	public void crear_paquete() {
@@ -352,7 +352,7 @@ public class Tienda {
 					if(valor_compra<cliente.getPresupuesto()) {
 						int nueva_cantidad_dulces = getAlmacen_dulces()[a].getCantidad_dulces()-cantidad;
 						getAlmacen_dulces()[a].setCantidad_dulces(nueva_cantidad_dulces);
-						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
+						double nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
 						estado = 2;//si retorna 2 la compra fue he hecha con exito
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setCantidad(cantidad);
@@ -389,7 +389,7 @@ public class Tienda {
 					if(valor_compra<cliente.getPresupuesto()) {
 						int nueva_cantidad_paquetes = getAlmacen_paquetes()[a].getCantidad_paquetes()-cantidad;
 						getAlmacen_paquetes()[a].setCantidad_paquetes(nueva_cantidad_paquetes);
-						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
+						double nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
 						estado = 2;
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setCantidad(cantidad);
@@ -426,14 +426,13 @@ public class Tienda {
 					if(valor_compra<cliente.getPresupuesto()) {
 						int nueva_cantidad_paquetes = getAlmacen_bebidas()[a].getCantidad_bebidas()-cantidad;
 						getAlmacen_bebidas()[a].setCantidad_bebidas(nueva_cantidad_paquetes);
-						int nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
+						double nuevo_presupuesto = (getCliente().getPresupuesto())-valor_compra;
 						getCliente().setPresupuesto(nuevo_presupuesto);
 						estado = 2;
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setCantidad(cantidad);
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setNombre(bebida);
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setValor_venta(valor_compra);
-						getFacturas()[num_factura].setTotal_factura(valor_compra);
-						
+						getFacturas()[num_factura].setTotal_factura(valor_compra);	
 					}
 				}
 			}
@@ -778,6 +777,23 @@ public class Tienda {
 		return "El presupuesto disponible es de: " + cliente.getPresupuesto();
 	}
 	
+	public  String reseñas() {
+
+		String reseñas = "";
+		String estrellas = "";
+		for(int a = 0;a<calificaciones.length;a++) {
+			int cont = 0;
+			if(!getCalificaciones()[a].getComentario().equals("no")) {
+				estrellas = "";
+				while(cont<getCalificaciones()[a].getNumero()) {
+					estrellas = estrellas + "®";
+					cont++;
+				}
+				reseñas = reseñas+ "\nReseña "+ (a+1)+ " [" +getCalificaciones()[a].getComentario()+"] "+ estrellas;
+			}
+		}
+		return reseñas;
+	}
 	
 	
 }

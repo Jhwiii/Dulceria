@@ -108,7 +108,7 @@ public class Sistema {
 						break; 
 					 }
 					case 8:{
-						option1 = 3;
+						//option1 = 3;
 						System.out.println("Gracias por visitar nuestra dulceria, antes de abandonarla ayudanos con una encuesta de satisfaccion para mejorar la experiencia");
 						s.encuesta(tienda);
 						break;
@@ -129,10 +129,6 @@ public class Sistema {
 			}
 			
 		}
-
-		
-		
-		
 	}
 	
 	
@@ -434,19 +430,18 @@ public class Sistema {
 		
 	
 		while (opcion !=4) {
-			
-		System.out.println("\nBienvenido al sistema de finanzas de Ciocolattto"
-				+ "\nQue desea realizar el dia de hoy?");
-		
-		System.out.println("\n1.Observar el dinero invertido"
-				+ "\n2.Observar dinero resultante de las ventas"
-				+ "\n3.Observar las ganancias estimadas"
-				+ "\n4.Salir");
+		System.out.println("****************************************************");	
+		System.out.println("* Bienvenido al sistema de finanzas de Ciocolattto *"
+				+ "\n* Que desea realizar el dia de hoy?                *"
+				+ "\n* 1.Observar el dinero invertido                   *"
+				+ "\n* 2.Observar dinero resultante de las ventas       *"
+				+ "\n* 3.Observar las ganancias estimadas               *"
+				+ "\n* 4.Salir                                          *");
+		System.out.println("****************************************************");	
 		   opcion = sc.nextInt(); 
 		   
-		   tienda.total_comprabebida(0, 0);
-		   tienda.total_compradul(0,0);
-		   tienda.total_comprapaq(0,0);
+		   
+		   
 		   tienda.venta_dulces(0, 0);
 		   tienda.venta_bebida(0, 0);
 		   tienda.venta_paquete(0, 0);
@@ -457,14 +452,14 @@ public class Sistema {
 		   
 		   switch (opcion) {
 		   case 1:{
-			    System.out.println("\nDinero invertido en dulces: " + tienda.getTotal_compradulce() );
-			    System.out.println("\nDinero invertido en bebidas: " + tienda.getTotal_comprabebida() );
-			    System.out.println("\nDinero invertido en dulces por paquetes: " + tienda.getTotal_comprapaquete());
+			    System.out.println("Dinero invertido en dulces: " + tienda.getTotal_compradulce());
+			    System.out.println("\nDinero invertido en bebidas: " + tienda.total_comprabebida(0, 0) );
+			    System.out.println("\nDinero invertido en dulces por paquetes: " + tienda.total_comprapaq(0,0));
 			    System.out.println("\nDinero invertido en total de inventario: " + tienda.getDinero_invertido());
 		   break;}
 		   
 		   case 2 :{
-			   System.out.println("\nDinero en venta de dulces: " + tienda.getTotal_ventadulce());
+			   System.out.println("Dinero en venta de dulces: " + tienda.getTotal_ventadulce());
 			   System.out.println("\nDinero en venta de bebidas: " + tienda.getTotal_ventabebida() );
 			   System.out.println("\nDinero en venta de dulces por paquete: " + tienda.getTotal_comprapaquete());
 			   System.out.println("\nDinero estimado en ventas: " + tienda.getDinero_ventas() );
@@ -611,9 +606,7 @@ public class Sistema {
 		Scanner sc = new Scanner(System.in);
 		int option6 = 0;
 		while(option6 !=5) {
-<<<<<<< HEAD
 			System.out.println("Elija el numero de la opcion a editar:\n1.Cambiar usuario\n2.Cambiar contraseña\n3.Editar nombre de tienda\n4.Editar dirrecion\n5.Salir");
-=======
 			System.out.println("*****************************************");
 			System.out.println("* Eliga el numero de la opcion a editar *"
 					+ "\n* 1.Cambiar usuario                     *"
@@ -622,7 +615,6 @@ public class Sistema {
 					+ "\n* 4.Editar dirrecion                    *"
 					+ "\n* 5.Salir                               *");
 			System.out.println("*****************************************");
->>>>>>> branch 'main' of https://github.com/Jhwiii/Dulceria.git
 			option6 = sc.nextInt();
 			switch(option6){
 			case 1:{
