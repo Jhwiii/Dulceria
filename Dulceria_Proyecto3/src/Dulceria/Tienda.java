@@ -716,6 +716,11 @@ public class Tienda {
 		return reseñas;
 	}
 
+	public String presupesto_disponible() {
+		return "El presupuesto disponible es de: " + cliente.getPresupuesto();
+	}
+	
+	
 	
 }
 
