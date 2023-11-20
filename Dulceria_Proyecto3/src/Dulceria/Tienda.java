@@ -276,7 +276,7 @@ public class Tienda {
 	}
 	
 	public void calificaciones() {
-		calificaciones[0] = new Calificacion("Es una excelente sulceria, todo muy economico",5);
+		calificaciones[0] = new Calificacion("Es una excelente dulceria, todo muy economico",5);
 		calificaciones[1] = new Calificacion("Muy agradable lugar, se puede mejorar la velocidad de atencion",3);
 		calificaciones[2] = new Calificacion("Los mejores dulces",4);
 		calificaciones[3] = new Calificacion("Un amigo tiene mas baratos los dulces",1);
