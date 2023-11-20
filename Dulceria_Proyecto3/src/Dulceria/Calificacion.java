@@ -23,7 +23,7 @@ public class Calificacion {
 
 	
 	public Calificacion() {
-		comentario = "";
+		comentario = "no";
 		numero = 0;
 	}
 	

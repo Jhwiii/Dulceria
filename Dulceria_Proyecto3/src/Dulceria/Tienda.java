@@ -700,6 +700,23 @@ public class Tienda {
 		return mensaje;
 	}
 	
+	public  String reseñas() {
+		
+		String reseñas = "";
+		String estrellas = "";
+		for(int a = 0;a<calificaciones.length;a++) {
+			int cont = 0;
+			if(!getCalificaciones()[a].getComentario().equals("no")) {
+				estrellas = "";
+				while(cont<getCalificaciones()[a].getNumero()) {
+					estrellas = estrellas + "®";
+					cont++;
+				}
+				reseñas = reseñas+ "\nReseña "+ (a+1)+ " [" +getCalificaciones()[a].getComentario()+"] "+ estrellas;
+			}
+		}
+		return reseñas;
+	}
 
 	
 }
