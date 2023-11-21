@@ -449,9 +449,9 @@ public class Tienda {
 		return edad;
 	}
 	
-	public int total_compradul( int i, int total_compradul ) {
+	public int total_compradul(  ) {
 	 
-		if (i < almacen_dulces.length) {
+		/*if (i < almacen_dulces.length) {
 			
 			total_compradul = almacen_dulces[i].getPrecio_compra()* almacen_dulces[i].getCantidad_dulces();
 			i++; 
@@ -465,11 +465,19 @@ public class Tienda {
 		} else {
 			
 			return total_compradul; 
-		}
+		}*/
+		
+		
+		for (int i = 0; i < almacen_dulces.length; i ++) {
+
+			int total_compradul = almacen_dulces[i].getPrecio_compra()* almacen_dulces[i].getCantidad_dulces();
+			
+			total_compradulce += total_compradul;
+		}return total_compradulce; 
 	}
-	public int total_comprabebida( int i, int total_comprabebi) {
+	public int total_comprabebida( ) {
 	
-		if (i < almacen_bebidas.length) {
+	/*	if (i < almacen_bebidas.length) {
 			
 			total_comprabebi = almacen_bebidas[i].getPrecio_compra()* almacen_bebidas[i].getCantidad_bebidas(); 
 			i++; 
@@ -483,12 +491,19 @@ public class Tienda {
 		} else {
 			
 			return total_comprabebi; 
-		}
+		}*/
+		
+		for (int i = 0; i < almacen_bebidas.length; i ++) {
+			int total_comprabebi = almacen_bebidas[i].getPrecio_compra()* almacen_bebidas[i].getCantidad_bebidas(); 
+			
+			total_comprabebida = total_comprabebi; 
+		}return total_comprabebida; 
+		
 	}
 	
-	public int total_comprapaq(int i, int total_comprapaq ) {
+	public int total_comprapaq( ) {
 	
-		if (i < almacen_paquetes.length) {
+		/*if (i < almacen_paquetes.length) {
 			
 			total_comprapaq = (int) (almacen_paquetes[i].getPrecio_compra() * almacen_paquetes[i].getCantidad_paquetes()) ; 
 			i++; 
@@ -501,12 +516,19 @@ public class Tienda {
 		
 		} else {
 			return total_comprapaq; 
-		}
+		}*/
+		for (int i = 0; i < almacen_paquetes.length; i ++) {
+			int total_comprapaq =   (int) (almacen_paquetes[i].getPrecio_compra() * almacen_paquetes[i].getCantidad_paquetes()) ; 
+			total_comprapaquete = total_comprapaq; 
+		}return total_comprapaquete; 
+	
 	}
 	
-	public int venta_dulces( int i, int total_ventadul) {
+	public int venta_dulces( ) {
 		
-    if (i < almacen_dulces.length) {
+		
+		
+    /*if (i < almacen_dulces.length) {
 			
 			total_ventadul = almacen_dulces[i].getPrecio_venta()* almacen_dulces[i].getCantidad_dulces();
 			i++; 
@@ -520,11 +542,19 @@ public class Tienda {
           } else {
         	  
     	   return total_ventadul; 
-       }
-	}
-	public int venta_bebida(int i, int total_ventabebi) {
+       }*/
 		
-		if  ( i < almacen_bebidas.length) {
+		for (int i = 0; i < almacen_dulces.length; i ++) {
+			int total_ventadul = almacen_dulces[i].getPrecio_venta()* almacen_dulces[i].getCantidad_dulces();
+			
+			total_ventadulce += total_ventadul; 
+		}return total_ventadulce; 
+	}
+	
+	
+	public int venta_bebida() {
+		
+		/*if  ( i < almacen_bebidas.length) {
 			
 		 total_ventabebi = almacen_bebidas[i].getPrecio_venta()* almacen_bebidas[i].getCantidad_bebidas(); 
 		 i++;
@@ -537,13 +567,20 @@ public class Tienda {
 		
 		} else {
 			
-			return total_ventabebi; 
-		}
+			return total_ventabebi; }*/
+		
+
+		for (int i = 0; i < almacen_bebidas.length; i ++) {
+			 
+			int total_ventabebi = almacen_bebidas[i].getPrecio_venta()* almacen_bebidas[i].getCantidad_bebidas(); 
+			 
+			 total_ventabebida = total_ventabebi; 
+		}return total_ventabebida; 
 	}
 	
-	public int venta_paquete(int i, int total_ventapaq) {
+	public int venta_paquete() {
 		
-		if (i < almacen_paquetes.length) {
+		/*if (i < almacen_paquetes.length) {
 			
 			 total_ventapaq = almacen_paquetes[i].getPrecio_venta() * almacen_paquetes[i].getCantidad_paquetes(); 
 			 i++;
@@ -557,27 +594,31 @@ public class Tienda {
 		}else {
 			
 			return total_ventapaq;
-		}
+		}*/
+	
+	
+	for (int i = 0; i < almacen_paquetes.length; i ++) {
+		
+		int total_ventapaq = almacen_paquetes[i].getPrecio_venta() * almacen_paquetes[i].getCantidad_paquetes(); 
+		
+		total_ventapaquete = total_ventapaq;
+	}return total_ventapaquete; 
 	}
 	public int total_dineroinvertido() {
 		
-		dinero_invertido += total_comprapaquete + total_comprabebida + total_compradulce ;
+		dinero_invertido = total_comprapaquete + total_comprabebida + total_compradulce ;
 		
 		return dinero_invertido; 
 	}
 	public int total_dineroventas() {
-		
 	
-		dinero_ventas += total_ventapaquete + total_ventabebida + total_ventadulce ; 
-		
+		dinero_ventas = total_ventapaquete + total_ventabebida + total_ventadulce ; 
 		
 		return dinero_ventas; 
 	}
 	public int ganancia () {
-		total_dineroinvertido(); 
-		total_dineroventas();		
-		
-		ganancia += dinero_ventas - dinero_invertido; 
+				
+		ganancia = dinero_ventas - dinero_invertido; 
 					
 	    return ganancia; 
 	}

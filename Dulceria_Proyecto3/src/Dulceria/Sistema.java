@@ -100,7 +100,7 @@ public class Sistema {
 						break;
 					}
 					case 6:{
-						System.out.println(tienda.reseñas());
+						/*System.out.println(tienda.reseñas());*/
 						break;
 					}
 					case 7:{
@@ -444,12 +444,12 @@ public class Sistema {
 				+ "\n4.Salir");
 		   opcion = sc.nextInt(); 
 		   
-		   tienda.total_comprabebida(0, 0);
-		   tienda.total_compradul(0,0);
-		   tienda.total_comprapaq(0,0);
-		   tienda.venta_dulces(0, 0);
-		   tienda.venta_bebida(0, 0);
-		   tienda.venta_paquete(0, 0);
+		   tienda.total_comprabebida();
+		   tienda.total_compradul();
+		   tienda.total_comprapaq();
+		   tienda.venta_dulces();
+		   tienda.venta_bebida();
+		   tienda.venta_paquete();
 		   tienda.total_dineroinvertido();
 		   tienda.total_dineroinvertido();
 		   tienda.total_dineroventas();
@@ -611,9 +611,9 @@ public class Sistema {
 		Scanner sc = new Scanner(System.in);
 		int option6 = 0;
 		while(option6 !=5) {
-<<<<<<< HEAD
+
 			System.out.println("Elija el numero de la opcion a editar:\n1.Cambiar usuario\n2.Cambiar contraseña\n3.Editar nombre de tienda\n4.Editar dirrecion\n5.Salir");
-=======
+
 			System.out.println("*****************************************");
 			System.out.println("* Eliga el numero de la opcion a editar *"
 					+ "\n* 1.Cambiar usuario                     *"
@@ -622,7 +622,7 @@ public class Sistema {
 					+ "\n* 4.Editar dirrecion                    *"
 					+ "\n* 5.Salir                               *");
 			System.out.println("*****************************************");
->>>>>>> branch 'main' of https://github.com/Jhwiii/Dulceria.git
+
 			option6 = sc.nextInt();
 			switch(option6){
 			case 1:{
