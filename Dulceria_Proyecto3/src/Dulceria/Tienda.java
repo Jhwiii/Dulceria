@@ -451,12 +451,11 @@ public class Tienda {
 	
 	public int total_compradul(  ) {
 	
-		
 		for (int i = 0; i < almacen_dulces.length; i ++) {
 
 			int total_compradul = almacen_dulces[i].getPrecio_compra()* almacen_dulces[i].getCantidad_dulces();
 			
-			total_compradulce += total_compradul;
+			total_compradulce = total_compradul;
 		}return total_compradulce; 
 	}
 	public int total_comprabebida( ) {
@@ -485,7 +484,7 @@ public class Tienda {
 		for (int i = 0; i < almacen_dulces.length; i ++) {
 			int total_ventadul = almacen_dulces[i].getPrecio_venta()* almacen_dulces[i].getCantidad_dulces();
 			
-			total_ventadulce += total_ventadul; 
+			total_ventadulce = total_ventadul; 
 		}return total_ventadulce; 
 	}
 	

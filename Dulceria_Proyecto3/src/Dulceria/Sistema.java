@@ -434,18 +434,6 @@ public class Sistema {
 				+ "\n* 4.Salir                                          *");
 		System.out.println("****************************************************");	
 		   opcion = sc.nextInt(); 
-		   
-
-		   
-		   
-		   tienda.venta_dulces();
-		   tienda.venta_bebida();
-		   tienda.venta_paquete();
-		   tienda.total_dineroinvertido();
-		   tienda.total_dineroinvertido();
-		   tienda.total_dineroventas();
-		   tienda.ganancia();
-		   
 
 		   switch (opcion) {
 		   case 1:{
@@ -459,10 +447,10 @@ public class Sistema {
 		   
 		   case 2 :{
 
-			   System.out.println("Dinero en venta de dulces: " + tienda.getTotal_ventadulce());
-			   System.out.println("Dinero en venta de bebidas: " + tienda.getTotal_ventabebida() );
-			   System.out.println("Dinero en venta de dulces por paquete: " + tienda.getTotal_comprapaquete());
-			   System.out.println("Dinero estimado en ventas: " + tienda.getDinero_ventas() );
+			   System.out.println("Dinero en venta de dulces: " + tienda.venta_dulces());
+			   System.out.println("Dinero en venta de bebidas: " +  tienda.venta_bebida() );
+			   System.out.println("Dinero en venta de dulces por paquete: " + tienda.venta_paquete());
+			   System.out.println("Dinero estimado en ventas: " +  tienda.total_dineroventas() );
 		   break;}
 		   
 		   case 3 : {
