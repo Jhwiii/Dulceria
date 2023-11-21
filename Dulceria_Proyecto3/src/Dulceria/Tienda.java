@@ -283,14 +283,11 @@ public class Tienda {
 		calificaciones[4] = new Calificacion();
 	}
 
+
 	@Override
 	public String toString() {
-		return "Tienda [nombre=" + nombre + ", direccion=" + direccion + "\nALMACEN DE BEBIDAS="
-				+ Arrays.toString(almacen_bebidas) + "\nALMACEN DE DULCES=" + Arrays.deepToString(almacen_dulces)
-				+ "\nALMACEN DE DULCES POR PAQUETE =" + Arrays.toString(almacen_paquetes) + "\nCALIFICACIONES="
-				+ Arrays.toString(calificaciones) + "]";
+		return "Tienda [direccion=" + direccion + ", telefono=" + telefono + ", correo=" + correo + "]";
 	}
-
 	public boolean login_user(boolean estado,String usuario) {
 		estado = false;
 		if(usuario.equals(trabajador.getUsuario_login())) {
@@ -433,7 +430,6 @@ public class Tienda {
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setNombre(bebida);
 						getFacturas()[num_factura].getObjetos_vendidos()[num_objeto_vendido].setValor_venta(valor_compra);
 						getFacturas()[num_factura].setTotal_factura(valor_compra);
-						
 					}
 				}
 			}
@@ -450,23 +446,7 @@ public class Tienda {
 	}
 	
 	public int total_compradul(  ) {
-	 
-		/*if (i < almacen_dulces.length) {
-			
-			total_compradul = almacen_dulces[i].getPrecio_compra()* almacen_dulces[i].getCantidad_dulces();
-			i++; 
-			
-			total_compradul = total_compradul(i, total_compradul); 
-			
-			total_compradulce += total_compradul; 
-			
-			return total_compradulce;	
-		
-		} else {
-			
-			return total_compradul; 
-		}*/
-		
+	
 		
 		for (int i = 0; i < almacen_dulces.length; i ++) {
 
@@ -477,21 +457,6 @@ public class Tienda {
 	}
 	public int total_comprabebida( ) {
 	
-	/*	if (i < almacen_bebidas.length) {
-			
-			total_comprabebi = almacen_bebidas[i].getPrecio_compra()* almacen_bebidas[i].getCantidad_bebidas(); 
-			i++; 
-			
-			total_comprabebi = total_comprabebida(i, total_comprabebi); 
-			
-			total_comprabebida += total_comprabebi; 
-			
-			return total_comprabebida; 	
-		
-		} else {
-			
-			return total_comprabebi; 
-		}*/
 		
 		for (int i = 0; i < almacen_bebidas.length; i ++) {
 			int total_comprabebi = almacen_bebidas[i].getPrecio_compra()* almacen_bebidas[i].getCantidad_bebidas(); 
@@ -503,20 +468,6 @@ public class Tienda {
 	
 	public int total_comprapaq( ) {
 	
-		/*if (i < almacen_paquetes.length) {
-			
-			total_comprapaq = (int) (almacen_paquetes[i].getPrecio_compra() * almacen_paquetes[i].getCantidad_paquetes()) ; 
-			i++; 
-			
-			total_comprapaq = total_comprapaq(i, total_comprapaq); 
-			
-			total_comprapaquete += total_comprapaq; 
-			
-			return total_comprapaquete; 	
-		
-		} else {
-			return total_comprapaq; 
-		}*/
 		for (int i = 0; i < almacen_paquetes.length; i ++) {
 			int total_comprapaq =   (int) (almacen_paquetes[i].getPrecio_compra() * almacen_paquetes[i].getCantidad_paquetes()) ; 
 			total_comprapaquete = total_comprapaq; 
@@ -527,23 +478,6 @@ public class Tienda {
 	public int venta_dulces( ) {
 		
 		
-		
-    /*if (i < almacen_dulces.length) {
-			
-			total_ventadul = almacen_dulces[i].getPrecio_venta()* almacen_dulces[i].getCantidad_dulces();
-			i++; 
-			
-			total_ventadul = venta_dulces(i, total_ventadul ); 
-		
-			total_ventadulce += total_ventadul; 
-			
-		return total_ventadulce; 
-       
-          } else {
-        	  
-    	   return total_ventadul; 
-       }*/
-		
 		for (int i = 0; i < almacen_dulces.length; i ++) {
 			int total_ventadul = almacen_dulces[i].getPrecio_venta()* almacen_dulces[i].getCantidad_dulces();
 			
@@ -553,21 +487,6 @@ public class Tienda {
 	
 	
 	public int venta_bebida() {
-		
-		/*if  ( i < almacen_bebidas.length) {
-			
-		 total_ventabebi = almacen_bebidas[i].getPrecio_venta()* almacen_bebidas[i].getCantidad_bebidas(); 
-		 i++;
-		 
-		 total_ventabebi = venta_bebida(i, total_ventabebi); 
-		
-		total_ventabebida += total_ventabebi; 
-		
-		return total_ventabebida; 	
-		
-		} else {
-			
-			return total_ventabebi; }*/
 		
 
 		for (int i = 0; i < almacen_bebidas.length; i ++) {
@@ -580,23 +499,7 @@ public class Tienda {
 	
 	public int venta_paquete() {
 		
-		/*if (i < almacen_paquetes.length) {
-			
-			 total_ventapaq = almacen_paquetes[i].getPrecio_venta() * almacen_paquetes[i].getCantidad_paquetes(); 
-			 i++;
-			 
-			 total_ventapaq = venta_paquete( i, total_ventapaq );
-			 
-			 total_ventapaquete = total_ventapaq; 
-			 
-			 return total_ventapaquete; 
-			
-		}else {
-			
-			return total_ventapaq;
-		}*/
-	
-	
+
 	for (int i = 0; i < almacen_paquetes.length; i ++) {
 		
 		int total_ventapaq = almacen_paquetes[i].getPrecio_venta() * almacen_paquetes[i].getCantidad_paquetes(); 
@@ -818,7 +721,6 @@ public class Tienda {
 	public String presupesto_disponible() {
 		return "El presupuesto disponible es de: " + cliente.getPresupuesto();
 	}
-	
 	
 	
 }
