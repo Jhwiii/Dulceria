@@ -13,13 +13,14 @@ public class Sistema {
 		Scanner sc = new Scanner(System.in);
 		Sistema s = new Sistema();
 		
-		
+		String blanco = "\033[37m";
+		String rojo = "\033[36m";
 		Tienda tienda = new Tienda("Ciocolatto ","Cra 4 # 8-71", "Ciocolatto@gmail.com", 320456788);
 		
 		//System.out.println(Arrays.toString(tienda.getAlmacen_dulces()));
 		int option1 = 0;
 		while(option1!=3) {
-			System.out.println("*********************************************************************");
+			System.out.println(rojo+"*********************************************************************");
 			System.out.println("* TIPO DE ACCESO * 1.Encargado * 2.Cliente * 3.Salir de la Dulceria *");
 			System.out.println("*********************************************************************");
 			option1 = sc.nextInt();
@@ -27,7 +28,7 @@ public class Sistema {
 			case 1:{
 				 if(s.validar_encargado(tienda)==true) {
 
-					 System.out.println("Eliga la opcion de encargado");
+					 System.out.println(blanco+"Eliga la opcion de encargado");
 			
 			 int option5 = 0;
 					 while(option5!=4) {
@@ -40,25 +41,25 @@ public class Sistema {
 						 System.out.println("**********************************************************");
 						 option5 = sc.nextInt();
 						 switch(option5) {
-						 case 1:{
-							 s.editar_productos(tienda,s);
-							 break;
-						 }
-						 case 2:{
-							 s.editar_propiedades(tienda);
-							 break;
-						 }
-						 case 3:{
-							 s.gananciastienda( tienda);
-						 }
-						 case 4:{
-							 System.out.println("SESION DE ENCARGADO CERRADA");
-							 break;
-						 }
-						 default:{
-							 System.out.println("Eliga una de las opciones disponibles");
-							 break;
-						 }
+							 case 1:{
+								 s.editar_productos(tienda,s);
+								 break;
+							 }
+							 case 2:{
+								 s.editar_propiedades(tienda);
+								 break;
+							 }
+							 case 3:{
+								 s.gananciastienda( tienda);
+							 }
+							 case 4:{
+								 System.out.println("SESION DE ENCARGADO CERRADA");
+								 break;
+							 }
+							 default:{
+								 System.out.println("Eliga una de las opciones disponibles");
+								 break;
+							 }
 						 }
 					 }				 
 
@@ -100,7 +101,7 @@ public class Sistema {
 						break;
 					}
 					case 6:{
-						System.out.println(tienda.reseñas());
+						/*System.out.println(tienda.reseñas());*/
 						break;
 					}
 					case 7:{
@@ -125,12 +126,10 @@ public class Sistema {
 			case 3:{
 				System.out.println("Saliendo del programa");
 				break;
+			   }
 			}
-			}
-			
 		}
 	}
-	
 	
 	public void encuesta(Tienda tienda) {
 		Scanner sc = new Scanner(System.in);
@@ -142,7 +141,6 @@ public class Sistema {
 		calificacion = sc.nextInt();
 		}while(calificacion<0||calificacion>5);
 		tienda.nueva_calificacion(comentario, calificacion);
-		
 	}
 	
 	
@@ -152,7 +150,6 @@ public class Sistema {
 		String resultado = palabra.toUpperCase().charAt(0) + palabra.substring(1, palabra.length()).toLowerCase();
 		return resultado;
 	}
-
 	
 	
 	public void menu_compras(Tienda tienda, Sistema s, int num_factura) {
@@ -235,14 +232,13 @@ public class Sistema {
 					else {
 						System.out.println("Compra realizada");
 						num_objeto_vendido = num_objeto_vendido +1; 
-						
 					}
 				}
 				else {
 					System.out.println("El paquete " + bebida + " no esta disponible");
 				}
 				break;	
-			}
+			   }
 			}
 		}
 		int adivinar = (int)(Math.random()*15);
@@ -341,14 +337,14 @@ public class Sistema {
 			System.out.println("INTENTO "+(contador+1)+" Escriba su usuario");
 			String usuario = sc.next();
 			if(tienda.login_user(estado, usuario)==true) {
-				System.out.println("Escriba su contraseña");
+				System.out.println("Escriba su contrasena");
 				String contraseña = sc.next();
 				if(tienda.login_contraseña(estado, contraseña)==true) {
 					System.out.println("Ingresando");
 					validacion = true;
 				}
 				else {
-					System.out.println("Contraseña incorrecta");
+					System.out.println("Contrasena incorrecta");
 					contador++;
 				}
 			}
@@ -373,7 +369,6 @@ public class Sistema {
 			System.out.println("\n2.Comunicarte con un asesor");
 			System.out.println("\n3.Salir");
 			opci = sc.nextInt(); 
-			
 			switch (opci) {
 			
 			case 1: {
@@ -400,7 +395,7 @@ public class Sistema {
 	    				System.out.println("Si tu pedido es dentro de la ciudad, alrededor de 3 horas, si es envio nacional, los tiempos dependen de las transportadoras.");
 	    				break;} 
 	    			case 4: {
-	    				System.out.println("Puedes dirigirte al menu anterior y comunicarte con un asesor. ");
+	    				System.out.println("Puedes dirigirte al menu anterior y comunicarte con un asesor, donde le podras expresar tus descontentos. ");
 	    				break;} 
 	    			default: {
 	    				System.out.println("opcion no valida, ingrese un numero correctamente");
@@ -410,9 +405,9 @@ public class Sistema {
 		 break;
 			}
 			case 2: {
-				System.out.println("Nuestras lineas de atencion son: ");
-				System.out.println("\nTelefono: " + tienda.getTelefono());
-				System.out.println("\nCorreo: " + tienda.getCorreo());
+				System.out.println("Nuestros puntos de contacto son: ");
+				System.out.println( tienda.toString());
+			
 				break; 
 			   }
 			default: {
@@ -440,33 +435,38 @@ public class Sistema {
 		System.out.println("****************************************************");	
 		   opcion = sc.nextInt(); 
 		   
+
 		   
 		   
-		   tienda.venta_dulces(0, 0);
-		   tienda.venta_bebida(0, 0);
-		   tienda.venta_paquete(0, 0);
+		   tienda.venta_dulces();
+		   tienda.venta_bebida();
+		   tienda.venta_paquete();
 		   tienda.total_dineroinvertido();
 		   tienda.total_dineroinvertido();
 		   tienda.total_dineroventas();
 		   tienda.ganancia();
 		   
+
 		   switch (opcion) {
 		   case 1:{
-			    System.out.println("Dinero invertido en dulces: " + tienda.getTotal_compradulce());
-			    System.out.println("\nDinero invertido en bebidas: " + tienda.total_comprabebida(0, 0) );
-			    System.out.println("\nDinero invertido en dulces por paquetes: " + tienda.total_comprapaq(0,0));
-			    System.out.println("\nDinero invertido en total de inventario: " + tienda.getDinero_invertido());
+			   System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+			   System.out.println("$ Dinero invertido en dulces: " + tienda.total_compradul()+ "                   $");
+			   System.out.println("$ Dinero invertido en bebidas: " +  tienda.total_comprabebida()+ "           $");
+			   System.out.println("$ Dinero invertido en dulces por paquetes: " + tienda.total_comprapaq()+ " $");
+			   System.out.println("$ Dinero invertido en total de inventario: " + tienda.total_dineroinvertido()+ " $");
+			   System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		   break;}
 		   
 		   case 2 :{
+
 			   System.out.println("Dinero en venta de dulces: " + tienda.getTotal_ventadulce());
-			   System.out.println("\nDinero en venta de bebidas: " + tienda.getTotal_ventabebida() );
-			   System.out.println("\nDinero en venta de dulces por paquete: " + tienda.getTotal_comprapaquete());
-			   System.out.println("\nDinero estimado en ventas: " + tienda.getDinero_ventas() );
+			   System.out.println("Dinero en venta de bebidas: " + tienda.getTotal_ventabebida() );
+			   System.out.println("Dinero en venta de dulces por paquete: " + tienda.getTotal_comprapaquete());
+			   System.out.println("Dinero estimado en ventas: " + tienda.getDinero_ventas() );
 		   break;}
 		   
 		   case 3 : {
-			   System.out.println("Ganancias estimadas con todo el inventario de la tienda: " + tienda.getGanancia());
+			   System.out.println("Ganancias estimadas con todo el inventario de la tienda: " + tienda.ganancia() );
 		   break; }
 		   case 4:{
 			   System.out.println("Vamos por mas felicidad para los clientes y ganancias para la tienda");
@@ -491,7 +491,7 @@ public class Sistema {
 			option4 = sc.nextInt();
 			switch(option4) {
 			case 1:{
-				System.out.println("Escriba el nombre del dulce que desea editar \n("+tienda.nombres_dulces(0,"")+")");
+				System.out.println("Escriba el nombre del dulce que desea editar \n" + tienda.nombres_dulces(0,""));
 				String dulce = sc.next();
 				dulce = s.ordenar_letras(dulce);
 				if(tienda.disponibilidad_dulces(dulce)==true) {
@@ -518,7 +518,7 @@ public class Sistema {
 						System.out.println("Escriba la nueva cantidad de gomas disponibles\"");
 						nueva_cantidad = sc.nextInt();
 					}while(nueva_cantidad<0);
-					System.out.println("El dulce modificado es: " + tienda.editar_dulce(dulce, nuevo_nombre_dulce, tipo, descripcion, nuevo_precio_compra, nuevo_precio_venta, nueva_cantidad));
+					System.out.println("El dulce modificado es: \n" + tienda.editar_dulce(dulce, nuevo_nombre_dulce, tipo, descripcion, nuevo_precio_compra, nuevo_precio_venta, nueva_cantidad));
 
 				}
 				else {
@@ -527,7 +527,7 @@ public class Sistema {
 				break;
 			}
 			case 2:{
-				System.out.println("Escriba el nombre de paquete de dulces que desea editar ("+tienda.nombres_paquetes(0,"")+")");
+				System.out.println("Escriba el nombre de paquete de dulces que desea editar: \n" + tienda.nombres_paquetes(0,""));
 				String paquete = ac.nextLine();
 				paquete = s.ordenar_letras(paquete);
 				if(tienda.disponibilidad_paquetes(paquete)==true) {
@@ -562,7 +562,7 @@ public class Sistema {
 				break;
 			}
 			case 3:{
-				System.out.println("Escriba el nombre de la bebida que quiere editar \n("+tienda.nombres_bebidas(0,"")+")");
+				System.out.println("Escriba el nombre de la bebida que quiere editar\n" + tienda.nombres_bebidas(0,""));
 				String bebida = ac.nextLine();
 				bebida = s.ordenar_letras(bebida);
 				if(tienda.disponibilidad_bebidas(bebida)==true) {
@@ -606,7 +606,11 @@ public class Sistema {
 		Scanner sc = new Scanner(System.in);
 		int option6 = 0;
 		while(option6 !=5) {
+
 			System.out.println("Elija el numero de la opcion a editar:\n1.Cambiar usuario\n2.Cambiar contraseña\n3.Editar nombre de tienda\n4.Editar dirrecion\n5.Salir");
+
+
+
 			System.out.println("*****************************************");
 			System.out.println("* Eliga el numero de la opcion a editar *"
 					+ "\n* 1.Cambiar usuario                     *"
@@ -615,6 +619,7 @@ public class Sistema {
 					+ "\n* 4.Editar dirrecion                    *"
 					+ "\n* 5.Salir                               *");
 			System.out.println("*****************************************");
+
 			option6 = sc.nextInt();
 			switch(option6){
 			case 1:{
