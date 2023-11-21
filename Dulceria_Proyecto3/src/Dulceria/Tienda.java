@@ -725,7 +725,7 @@ public class Tienda {
 		return "El presupuesto disponible es de: " + cliente.getPresupuesto();
 	}
 	
-	public  String reseñas() {
+	public String reseñas() {
 
 		String reseñas = "";
 		String estrellas = "";

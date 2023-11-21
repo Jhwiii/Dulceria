@@ -438,10 +438,10 @@ public class Sistema {
 		   switch (opcion) {
 		   case 1:{
 			   System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-			   System.out.println("$ Dinero invertido en dulces: " + tienda.total_compradul()+ "                   $");
-			   System.out.println("$ Dinero invertido en bebidas: " +  tienda.total_comprabebida()+ "           $");
+			   System.out.println("$ Dinero invertido en dulces: " + tienda.total_compradul()+ "                  $");
+			   System.out.println("$ Dinero invertido en bebidas: " +  tienda.total_comprabebida()+ "             $");
 			   System.out.println("$ Dinero invertido en dulces por paquetes: " + tienda.total_comprapaq()+ " $");
-			   System.out.println("$ Dinero invertido en total de inventario: " + tienda.total_dineroinvertido()+ " $");
+			   System.out.println("$ Dinero invertido en total de inventario: " + tienda.total_dineroinvertido()+" $");
 			   System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		   break;}
 		   
